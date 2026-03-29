@@ -1058,7 +1058,7 @@ body {
 // GOOGLE SHEETS CSV SOURCE
 // ═════════════════════════════════════════
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTM2c983bRewVHbufSyrDqnezM9Tm02VKr7jKL3qZpHeaEMYdUoLL2-yQRdOKBu_EsopBjnCS-IWGJu/pub?output=csv';
-const PROXY_URL = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(CSV_URL);
+
 
 function parseCSV(text) {
   const lines = text.trim().split('\n');
@@ -1101,7 +1101,7 @@ function rowToEvent(row, idx) {
 }
 
 function showLoadingState() {
-  const loadHtml = `<div class="loading-state"><div class="spinner"></div><p>Loading events…</p></div>`;
+  const loadHtml = `<div class="loading-state"><div class="spinner"></div><p>Loading events — this may take a few seconds…</p></div>`;
   document.getElementById('calendarGrid').innerHTML = loadHtml;
   document.getElementById('galleryGrid').innerHTML = loadHtml;
 }
@@ -1510,11 +1510,26 @@ document.getElementById('submitBtn').addEventListener('click', () => {
 // ═════════════════════════════════════════
 // INIT — fetch from Google Sheets CSV
 // ═════════════════════════════════════════
+async function fetchWithRetry(url, attempts = 3, delayMs = 2000) {
+  for (let i = 0; i < attempts; i++) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res;
+    } catch (err) {
+      if (i < attempts - 1) {
+        await new Promise(r => setTimeout(r, delayMs));
+      } else {
+        throw err;
+      }
+    }
+  }
+}
+
 async function init() {
   showLoadingState();
   try {
-    const res = await fetch(PROXY_URL);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const res = await fetchWithRetry(CSV_URL);
     const text = await res.text();
     const rows = parseCSV(text);
     const published = rows.filter(r => (r.status || '').toLowerCase().trim() === 'published');
