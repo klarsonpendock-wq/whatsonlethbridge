@@ -192,21 +192,14 @@ body {
 }
 
 /* ─── CALENDAR VIEW ─── */
-.calendar-wrapper {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--sand-dark);
-}
-
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, minmax(120px, 1fr));
+  grid-template-columns: repeat(7, 1fr);
   gap: 1px;
   background: var(--sand-dark);
   border-radius: var(--radius-lg);
-  overflow: visible;
-  min-width: 700px;
+  overflow: hidden;
+  border: 1px solid var(--sand-dark);
 }
 
 .cal-day-header {
@@ -859,48 +852,6 @@ body {
 .event-card:nth-child(5) { animation-delay: 0.16s; }
 .event-card:nth-child(6) { animation-delay: 0.2s; }
 
-/* ─── LOADING / ERROR STATES ─── */
-.loading-state {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--stone);
-}
-
-.loading-state .spinner {
-  width: 36px;
-  height: 36px;
-  border: 3px solid var(--sand-dark);
-  border-top-color: var(--terra);
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-  margin: 0 auto 16px;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.error-state {
-  text-align: center;
-  padding: 48px 20px;
-  background: var(--rose-light);
-  border-radius: var(--radius-lg);
-  border: 1px solid #e8c8c8;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.error-state h3 {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  color: var(--rose);
-  margin-bottom: 8px;
-}
-
-.error-state p {
-  font-size: 0.85rem;
-  color: var(--charcoal-light);
-  line-height: 1.6;
-}
-
 /* ─── EMPTY STATE ─── */
 .empty-state {
   text-align: center;
@@ -944,9 +895,7 @@ body {
 
     <!-- Calendar View -->
     <div class="view-section active" id="view-calendar">
-      <div class="calendar-wrapper">
-        <div class="calendar-grid" id="calendarGrid"></div>
-      </div>
+      <div class="calendar-grid" id="calendarGrid"></div>
       <div class="mobile-list" id="mobileList"></div>
     </div>
 
@@ -968,23 +917,23 @@ body {
     <div class="submit-form">
       <div class="form-grid" id="submitFormGrid">
         <div class="form-group full-width">
-          <label for="f-name">Event Name <span class="req">*</span></label>
+          <label>Event Name <span class="req">*</span></label>
           <input type="text" id="f-name" placeholder="e.g. Spring Art Walk" required>
         </div>
         <div class="form-group">
-          <label for="f-date">Date(s) <span class="req">*</span></label>
+          <label>Date(s) <span class="req">*</span></label>
           <input type="text" id="f-date" placeholder="e.g. April 15, 2026">
         </div>
         <div class="form-group">
-          <label for="f-time">Time</label>
+          <label>Time</label>
           <input type="text" id="f-time" placeholder="e.g. 7:00 PM – 9:00 PM">
         </div>
         <div class="form-group">
-          <label for="f-venue">Venue / Location <span class="req">*</span></label>
+          <label>Venue / Location <span class="req">*</span></label>
           <input type="text" id="f-venue" placeholder="e.g. Galt Museum">
         </div>
         <div class="form-group">
-          <label for="f-category">Category</label>
+          <label>Category</label>
           <select id="f-category">
             <option value="">Select…</option>
             <option>Arts & Culture</option>
@@ -1002,19 +951,19 @@ body {
           </select>
         </div>
         <div class="form-group">
-          <label for="f-price">Price</label>
+          <label>Price</label>
           <input type="text" id="f-price" placeholder="e.g. Free / $25 / By donation">
         </div>
         <div class="form-group">
-          <label for="f-link">Link (website or tickets)</label>
+          <label>Link (website or tickets)</label>
           <input type="url" id="f-link" placeholder="https://...">
         </div>
         <div class="form-group full-width">
-          <label for="f-desc">Description <span class="req">*</span></label>
+          <label>Description <span class="req">*</span></label>
           <textarea id="f-desc" placeholder="Tell us about the event — what it is, who it's for, and anything else attendees should know."></textarea>
         </div>
         <div class="form-group full-width">
-          <label for="f-contact">Your Name & Email (not published)</label>
+          <label>Your Name & Email (not published)</label>
           <input type="text" id="f-contact" placeholder="So we can follow up if needed">
         </div>
       </div>
@@ -1055,72 +1004,9 @@ body {
 
 <script>
 // ═════════════════════════════════════════
-// GOOGLE SHEETS CSV SOURCE
+// EVENT DATA — April 2026
 // ═════════════════════════════════════════
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTM2c983bRewVHbufSyrDqnezM9Tm02VKr7jKL3qZpHeaEMYdUoLL2-yQRdOKBu_EsopBjnCS-IWGJu/pub?output=csv';
-
-
-function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  if (lines.length < 2) return [];
-  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
-  return lines.slice(1).map((line, idx) => {
-    // Handle quoted fields that may contain commas
-    const cols = [];
-    let cur = '', inQ = false;
-    for (let i = 0; i < line.length; i++) {
-      const ch = line[i];
-      if (ch === '"') { inQ = !inQ; }
-      else if (ch === ',' && !inQ) { cols.push(cur); cur = ''; }
-      else { cur += ch; }
-    }
-    cols.push(cur);
-    const row = {};
-    headers.forEach((h, i) => { row[h] = (cols[i] || '').trim().replace(/^"|"$/g, ''); });
-    return row;
-  });
-}
-
-function rowToEvent(row, idx) {
-  // categories column may be comma-separated inside the field, or pipe-separated
-  const rawCats = row.categories || '';
-  const cats = rawCats.split(/[|;]/).map(c => c.trim()).filter(Boolean);
-  return {
-    id: idx + 1,
-    title: row.title || '(Untitled)',
-    date: row.date || '',
-    endDate: row.endDate || '',
-    time: row.time || '',
-    location: row.location || '',
-    categories: cats.length ? cats : ['Community'],
-    price: row.price || '',
-    description: row.description || '',
-    link: row.link || '',
-    source: row.source || '',
-  };
-}
-
-function showLoadingState() {
-  const loadHtml = `<div class="loading-state"><div class="spinner"></div><p>Loading events — this may take a few seconds…</p></div>`;
-  document.getElementById('calendarGrid').innerHTML = loadHtml;
-  document.getElementById('galleryGrid').innerHTML = loadHtml;
-}
-
-function showErrorState() {
-  const errHtml = `
-    <div class="error-state">
-      <h3>Couldn't load events</h3>
-      <p>We weren't able to fetch the event calendar right now. Please try refreshing the page, or check back shortly. If the problem persists, contact the site administrator.</p>
-    </div>`;
-  document.getElementById('calendarGrid').innerHTML = errHtml;
-  document.getElementById('galleryGrid').innerHTML = errHtml;
-}
-
-// ═════════════════════════════════════════
-// HARDCODED FALLBACK DATA — April 2026
-// (kept as reference; replaced by Sheet at runtime)
-// ═════════════════════════════════════════
-const _hardcodedEvents = [
+const events = [
   {id:1,title:"Crafternoon (U of L Art Gallery)",date:"2026-04-01",time:"1:00 PM",location:"U of L Art Gallery, University of Lethbridge",categories:["Arts & Culture","Family","Community"],price:"Free",description:"Drop-in creative afternoon. Activities include origami, collage, watercolour, and fibre arts. Free tea provided. No experience needed. Bring your own project or use what's there.",link:"https://www.ulethbridge.ca/fine-arts/event-season"},
   {id:2,title:"U of L Jazz Ensemble Concert",date:"2026-04-01",time:"7:30 PM",location:"University Theatre W500, U of L Centre for the Arts",categories:["Music"],price:"TBC",description:"The Jazz Ensemble performs an eclectic mix of big band, vintage jazz, and contemporary works under the direction of Dr. Josh Davies.",link:"https://www.ulethbridge.ca/fine-arts/event-season"},
   {id:3,title:'Casa Spring Art Camp — "Hot Off the Press"',date:"2026-04-01",endDate:"2026-04-05",time:"9:00 AM – 12:00 PM daily",location:"Casa Community Arts Centre, 230 8th St South",categories:["Education","Arts & Culture","Family"],price:"$175",description:"Printmaking camp (ages 9–13). Students etch, carve, roll, stamp, and print drawings to make cards, zines, and prints. Materials provided. Runs April 1–5.",link:"https://casalethbridge.ca/events"},
@@ -1184,9 +1070,6 @@ const _hardcodedEvents = [
   {id:61,title:"Recipes of the Archives: Sicks' Enterpriser Edition",date:"2026-04-30",time:"5:00 PM – 7:00 PM",location:"Galt Museum & Archives, 502 1st St South",categories:["Food & Drink","Heritage","Community"],price:"Ticketed",description:"Beer-inspired recipes from historic Fritz Sick's Enterpriser magazines, prepared by Galt programmers with expert context. Registration required.",link:"https://www.galtmuseum.com/events"}
 ];
 
-// Live events — populated by fetch, falls back to _hardcodedEvents on error (not used here as we show error state instead)
-let events = [];
-
 const ongoingExhibitions = [
   {venue:"Casa Gallery",name:"Kamotáán (Survival) — Darren Weaselchild",desc:"Mar 28 – May 29, 2026. Free admission."},
   {venue:"Casa Gallery",name:"In The Meantime: The Alberta Society of Artists",desc:"Mar 28 – May 29, 2026. Free admission."},
@@ -1244,7 +1127,7 @@ function getPriceLabel(price) {
 // ═════════════════════════════════════════
 let activeView = 'calendar';
 let activeFilters = new Set();
-const allCategories = [];
+const allCategories = [...new Set(events.flatMap(e => e.categories))].sort();
 
 // ═════════════════════════════════════════
 // RENDER FUNCTIONS
@@ -1508,51 +1391,13 @@ document.getElementById('submitBtn').addEventListener('click', () => {
 });
 
 // ═════════════════════════════════════════
-// INIT — fetch from Google Sheets CSV
+// INIT
 // ═════════════════════════════════════════
-async function fetchWithRetry(url, attempts = 3, delayMs = 2000) {
-  for (let i = 0; i < attempts; i++) {
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return res;
-    } catch (err) {
-      if (i < attempts - 1) {
-        await new Promise(r => setTimeout(r, delayMs));
-      } else {
-        throw err;
-      }
-    }
-  }
-}
-
-async function init() {
-  showLoadingState();
-  try {
-    const res = await fetchWithRetry(CSV_URL);
-    const text = await res.text();
-    const rows = parseCSV(text);
-    const published = rows.filter(r => (r.status || '').toLowerCase().trim() === 'published');
-    if (published.length === 0) throw new Error('No published events found in sheet');
-    events = published.map(rowToEvent);
-  } catch (err) {
-    console.error('Failed to load events from Sheet:', err);
-    showErrorState();
-    return;
-  }
-
-  // Rebuild category list from live data
-  allCategories.length = 0;
-  [...new Set(events.flatMap(e => e.categories))].sort().forEach(c => allCategories.push(c));
-
-  renderFilters();
-  renderCalendar();
-  renderGallery();
-  renderMobileList();
-  renderOngoing();
-}
-
-init();
+renderFilters();
+renderCalendar();
+renderGallery();
+renderMobileList();
+renderOngoing();
 </script>
 
 </body>
