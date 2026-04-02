@@ -1913,7 +1913,10 @@ function renderDayOverlay() {
   }).join('');
 
   container.querySelectorAll('.day-overlay-event').forEach(el => {
-    el.addEventListener('click', () => openModal(parseInt(el.dataset.id)));
+    el.addEventListener('click', () => {
+      closeDayOverlay();
+      openModal(parseInt(el.dataset.id));
+    });
   });
 }
 
