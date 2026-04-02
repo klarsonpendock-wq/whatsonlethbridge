@@ -57,6 +57,18 @@ body {
   z-index: 100;
 }
 
+.site-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  opacity: 0.05;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .header-top {
   max-width: 1200px;
   margin: 0 auto;
@@ -163,201 +175,249 @@ body {
   color: var(--terra);
 }
 
-/* ─── CALENDAR SUB-VIEW TABS ─── */
-.cal-view-tabs {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 16px;
+/* ─── DAY OVERLAY MODAL ─── */
+.day-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(45,42,38,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0;
 }
 
-.cal-view-tab {
+.day-overlay.open { display: flex; }
+
+/* Mobile-first: slides up from bottom like a native sheet */
+.day-overlay-content {
   background: var(--warm-white);
-  border: 1.5px solid var(--sand-dark);
-  border-radius: var(--radius-sm);
-  padding: 5px 14px;
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--charcoal-light);
-  cursor: pointer;
-  transition: all 0.2s;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.25s ease-out;
 }
 
-.cal-view-tab:hover { border-color: var(--terra); color: var(--terra); }
-
-.cal-view-tab.active {
-  background: var(--charcoal);
-  border-color: var(--charcoal);
-  color: var(--warm-white);
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0.8; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
-/* ─── DAY VIEW ─── */
-.day-view { display: none; }
-.day-view.active { display: block; }
+/* Desktop: centered card instead of bottom sheet */
+@media (min-width: 769px) {
+  .day-overlay {
+    align-items: center;
+    padding: 24px;
+  }
+  .day-overlay-content {
+    max-width: 520px;
+    max-height: 80vh;
+    border-radius: var(--radius-lg);
+    animation: fadeScale 0.2s ease-out;
+  }
+  @keyframes fadeScale {
+    from { transform: scale(0.96); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+}
 
-.day-nav {
+.day-overlay-header {
+  position: sticky;
+  top: 0;
+  background: var(--warm-white);
+  z-index: 1;
+  padding: 20px 20px 12px;
+  border-bottom: 1px solid var(--sand-dark);
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  gap: 8px;
 }
 
-.day-nav-btn {
-  background: var(--warm-white);
+.day-overlay-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.day-overlay-nav-btn {
+  background: var(--sand);
   border: 1.5px solid var(--sand-dark);
   border-radius: var(--radius-sm);
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: var(--charcoal-light);
-  transition: all 0.2s;
-}
-
-.day-nav-btn:hover { border-color: var(--terra); color: var(--terra); }
-
-.day-label {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--charcoal);
-}
-
-.day-events-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.day-event-row {
-  background: var(--warm-white);
-  border: 1px solid var(--sand-dark);
-  border-radius: var(--radius-md);
-  padding: 14px 18px;
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.day-event-row:hover {
-  box-shadow: var(--shadow-md);
-  border-color: transparent;
-}
-
-.day-event-time {
-  font-size: 0.78rem;
-  color: var(--stone);
-  font-weight: 600;
-  min-width: 80px;
-  padding-top: 2px;
-}
-
-.day-event-info { flex: 1; }
-
-.day-event-title {
-  font-family: var(--font-display);
+  transition: all 0.15s;
   font-size: 1rem;
-  font-weight: 600;
-  color: var(--charcoal);
-  margin-bottom: 4px;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.day-event-meta {
-  font-size: 0.78rem;
-  color: var(--stone);
+.day-overlay-nav-btn:hover,
+.day-overlay-nav-btn:active {
+  border-color: var(--terra);
+  color: var(--terra);
+  background: var(--warm-white);
 }
 
-.day-empty {
-  text-align: center;
-  padding: 48px 20px;
-  color: var(--stone);
-  font-size: 0.9rem;
-}
-
-/* ─── WEEK VIEW ─── */
-.week-view { display: none; }
-.week-view.active { display: block; }
-
-.week-nav {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.week-label {
+.day-overlay-date {
   font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--charcoal);
-}
-
-.week-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
-}
-
-.week-col-header {
   text-align: center;
-  padding: 8px 4px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--stone);
-}
-
-.week-col-header.today-col { color: var(--terra); }
-
-.week-col {
-  min-height: 120px;
-  background: var(--warm-white);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--sand-dark);
-  padding: 8px 6px;
-  transition: background 0.15s;
-}
-
-.week-col.today-col { background: var(--amber-light); border-color: var(--amber); }
-
-.week-col-date {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--charcoal);
-  margin-bottom: 6px;
-  text-align: center;
-}
-
-.week-col.today-col .week-col-date { color: var(--terra); }
-
-.week-event {
-  font-size: 0.68rem;
-  padding: 3px 6px;
-  border-radius: 3px;
-  margin-bottom: 3px;
-  cursor: pointer;
+  flex: 1;
+  min-width: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: 500;
-  line-height: 1.5;
-  transition: opacity 0.15s;
 }
 
-.week-event:hover { opacity: 0.75; }
+.day-overlay-close {
+  background: var(--sand);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--charcoal-light);
+  transition: background 0.15s;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.day-overlay-close:hover { background: var(--sand-dark); }
+
+.day-overlay-body {
+  padding: 16px 20px 24px;
+}
+
+.day-overlay-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.day-overlay-event {
+  background: var(--sand);
+  border: 1px solid var(--sand-dark);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: all 0.15s;
+  border-left: 4px solid transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.day-overlay-event:hover,
+.day-overlay-event:active {
+  background: var(--warm-white);
+  border-color: var(--sand-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Category left-border colours for overlay event rows */
+.day-overlay-event.cat-music { border-left-color: var(--plum); }
+.day-overlay-event.cat-arts { border-left-color: var(--sage); }
+.day-overlay-event.cat-community { border-left-color: var(--sky); }
+.day-overlay-event.cat-family { border-left-color: var(--amber); }
+.day-overlay-event.cat-heritage { border-left-color: #7A6B5F; }
+.day-overlay-event.cat-film { border-left-color: var(--rose); }
+.day-overlay-event.cat-food { border-left-color: #8B7355; }
+.day-overlay-event.cat-sport { border-left-color: #5F7A6B; }
+.day-overlay-event.cat-education { border-left-color: #6B5F7A; }
+.day-overlay-event.cat-comedy { border-left-color: #7A7A5F; }
+.day-overlay-event.cat-dance { border-left-color: #8B5570; }
+.day-overlay-event.cat-entertainment { border-left-color: #7A5F6B; }
+
+.day-overlay-event-time {
+  font-size: 0.75rem;
+  color: var(--stone);
+  font-weight: 600;
+  min-width: 70px;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+.day-overlay-event-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.day-overlay-event-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+
+.day-overlay-event-loc {
+  font-size: 0.75rem;
+  color: var(--stone);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.day-overlay-event-price {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.day-overlay-empty {
+  text-align: center;
+  padding: 36px 20px;
+  color: var(--stone);
+  font-size: 0.88rem;
+}
+
+.day-overlay-empty-icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  opacity: 0.5;
+}
+
+/* Touch-friendly: bigger tap targets on mobile */
+@media (max-width: 768px) {
+  .day-overlay-event {
+    padding: 16px;
+    gap: 12px;
+  }
+  .day-overlay-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .day-overlay-date {
+    font-size: 1rem;
+  }
+  .day-overlay-header {
+    padding: 16px 16px 12px;
+  }
+  .day-overlay-body {
+    padding: 12px 16px 28px;
+  }
+}
 
 /* ─── MONTH VIEW ─── */
-.month-view { }
-
-/* ─── CAL SUB-VIEW CONTAINER ─── */
 .month-view { display: block; }
-.week-view, .day-view { display: none; }
-.week-view.active, .day-view.active { display: block; }
 
 .month-header {
   display: flex;
@@ -370,9 +430,10 @@ body {
 
 .month-title {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 2.8rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  font-style: italic;
+  letter-spacing: -0.03em;
   color: var(--charcoal);
 }
 
@@ -413,6 +474,158 @@ body {
   color: var(--warm-white);
 }
 
+/* ─── CALENDAR DAY — event-bearing cells ─── */
+.cal-day.has-events {
+  background: var(--warm-white);
+}
+
+.cal-day.empty {
+  background: var(--sand);
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Alternating calendar rows */
+.calendar-grid .cal-row-alt {
+  background: rgba(212, 197, 169, 0.15);
+}
+
+/* Event dot indicators */
+.cal-dots {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.cal-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.cal-dot-more {
+  font-size: 0.6rem;
+  color: var(--terra);
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Category dot colours */
+.cal-dot.cat-music { background: var(--plum); }
+.cal-dot.cat-arts { background: var(--sage); }
+.cal-dot.cat-community { background: var(--sky); }
+.cal-dot.cat-family { background: var(--amber); }
+.cal-dot.cat-heritage { background: #7A6B5F; }
+.cal-dot.cat-film { background: var(--rose); }
+.cal-dot.cat-food { background: #8B7355; }
+.cal-dot.cat-sport { background: #5F7A6B; }
+.cal-dot.cat-education { background: #6B5F7A; }
+.cal-dot.cat-comedy { background: #7A7A5F; }
+.cal-dot.cat-dance { background: #8B5570; }
+.cal-dot.cat-entertainment { background: #7A5F6B; }
+
+/* Category bottom-border colours for day cells */
+.cal-day.cat-border-music { border-bottom: 3px solid var(--plum); }
+.cal-day.cat-border-arts { border-bottom: 3px solid var(--sage); }
+.cal-day.cat-border-community { border-bottom: 3px solid var(--sky); }
+.cal-day.cat-border-family { border-bottom: 3px solid var(--amber); }
+.cal-day.cat-border-heritage { border-bottom: 3px solid #7A6B5F; }
+.cal-day.cat-border-film { border-bottom: 3px solid var(--rose); }
+.cal-day.cat-border-food { border-bottom: 3px solid #8B7355; }
+.cal-day.cat-border-sport { border-bottom: 3px solid #5F7A6B; }
+.cal-day.cat-border-education { border-bottom: 3px solid #6B5F7A; }
+.cal-day.cat-border-comedy { border-bottom: 3px solid #7A7A5F; }
+.cal-day.cat-border-dance { border-bottom: 3px solid #8B5570; }
+.cal-day.cat-border-entertainment { border-bottom: 3px solid #7A5F6B; }
+
+/* ─── THIS WEEK STRIP ─── */
+.this-week-section {
+  margin-bottom: 16px;
+}
+
+.this-week-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--stone);
+  margin-bottom: 8px;
+}
+
+.this-week-strip {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.this-week-strip::-webkit-scrollbar { display: none; }
+
+.this-week-card {
+  min-width: 220px;
+  max-width: 260px;
+  flex-shrink: 0;
+  background: var(--warm-white);
+  border: 1px solid var(--sand-dark);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  border-left-width: 4px;
+  border-left-style: solid;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.this-week-card:hover { box-shadow: var(--shadow-md); }
+
+.this-week-card.cat-music { border-left-color: var(--plum); }
+.this-week-card.cat-arts { border-left-color: var(--sage); }
+.this-week-card.cat-community { border-left-color: var(--sky); }
+.this-week-card.cat-family { border-left-color: var(--amber); }
+.this-week-card.cat-heritage { border-left-color: #7A6B5F; }
+.this-week-card.cat-film { border-left-color: var(--rose); }
+.this-week-card.cat-food { border-left-color: #8B7355; }
+.this-week-card.cat-sport { border-left-color: #5F7A6B; }
+.this-week-card.cat-education { border-left-color: #6B5F7A; }
+.this-week-card.cat-comedy { border-left-color: #7A7A5F; }
+.this-week-card.cat-dance { border-left-color: #8B5570; }
+.this-week-card.cat-entertainment { border-left-color: #7A5F6B; }
+
+.this-week-title {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  line-height: 1.3;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.this-week-datetime {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: var(--charcoal-light);
+  margin-bottom: 2px;
+}
+
+.this-week-location {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  color: var(--stone);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* ─── CALENDAR VIEW ─── */
 .calendar-wrapper {
   overflow-x: auto;
@@ -434,7 +647,7 @@ body {
 .cal-day-header {
   background: var(--charcoal);
   color: var(--stone);
-  padding: 10px 8px;
+  padding: 6px 8px;
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -443,29 +656,26 @@ body {
 }
 
 .cal-day {
-  background: var(--warm-white);
-  min-height: 110px;
-  padding: 8px;
+  background: var(--sand);
+  min-height: 72px;
+  padding: 5px;
   position: relative;
   transition: background 0.15s;
+  cursor: pointer;
 }
 
 .cal-day:hover { background: #FEFCF5; }
 
-.cal-day.empty {
-  background: var(--sand);
-  opacity: 0.5;
-}
-
 .cal-day.today {
   background: var(--amber-light);
+  border: 2px solid var(--terra);
 }
 
 .cal-date {
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--charcoal);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   display: inline-block;
 }
 
@@ -951,24 +1161,24 @@ body {
 .footer-links a:hover { color: var(--warm-white); }
 
 .footer-note {
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   max-width: 400px;
-  line-height: 1.5;
+  line-height: 1.7;
+  color: var(--wheat);
 }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
   .calendar-grid { display: none; }
   .mobile-list { display: block !important; }
-  .cal-view-tabs { display: none; }
-  .week-view, .day-view { display: none !important; }
   .gallery-grid { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .header-top { padding: 16px; }
   .site-title { font-size: 1.35rem; }
-  .month-title { font-size: 1.5rem; }
+  .month-title { font-size: 1.8rem; }
   .main-content { padding: 20px 16px 40px; }
   .modal-inner { padding: 20px; }
+  .this-week-strip { overflow-x: auto; }
 }
 
 .mobile-list { display: none; }
@@ -1116,11 +1326,10 @@ body {
 
     <!-- Calendar View -->
     <div class="view-section active" id="view-calendar">
-      <!-- Sub-view tabs (month/week/day) — desktop only -->
-      <div class="cal-view-tabs" id="calViewTabs">
-        <button class="cal-view-tab active" data-calview="month">Month</button>
-        <button class="cal-view-tab" data-calview="week">Week</button>
-        <button class="cal-view-tab" data-calview="day">Day</button>
+      <!-- This Week strip -->
+      <div class="this-week-section" id="thisWeekSection" style="display:none">
+        <div class="this-week-label">This Week</div>
+        <div class="this-week-strip" id="thisWeekStrip"></div>
       </div>
 
       <!-- Month view -->
@@ -1128,26 +1337,6 @@ body {
         <div class="calendar-wrapper">
           <div class="calendar-grid" id="calendarGrid"></div>
         </div>
-      </div>
-
-      <!-- Week view -->
-      <div class="week-view" id="weekView">
-        <div class="week-nav">
-          <button class="day-nav-btn" id="prevWeek">&#8592;</button>
-          <span class="week-label" id="weekLabel"></span>
-          <button class="day-nav-btn" id="nextWeek">&#8594;</button>
-        </div>
-        <div class="week-grid" id="weekGrid"></div>
-      </div>
-
-      <!-- Day view -->
-      <div class="day-view" id="dayView">
-        <div class="day-nav">
-          <button class="day-nav-btn" id="prevDay">&#8592;</button>
-          <span class="day-label" id="dayLabel"></span>
-          <button class="day-nav-btn" id="nextDay">&#8594;</button>
-        </div>
-        <div class="day-events-list" id="dayEventsList"></div>
       </div>
 
       <div class="mobile-list" id="mobileList"></div>
@@ -1238,6 +1427,23 @@ body {
   </div>
 </div>
 
+<!-- DAY OVERLAY -->
+<div class="day-overlay" id="dayOverlay">
+  <div class="day-overlay-content">
+    <div class="day-overlay-header">
+      <div class="day-overlay-nav">
+        <button class="day-overlay-nav-btn" id="dayOverlayPrev">&#8592;</button>
+        <div class="day-overlay-date" id="dayOverlayDate"></div>
+        <button class="day-overlay-nav-btn" id="dayOverlayNext">&#8594;</button>
+      </div>
+      <button class="day-overlay-close" id="dayOverlayClose">✕</button>
+    </div>
+    <div class="day-overlay-body">
+      <div class="day-overlay-list" id="dayOverlayList"></div>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="footer-inner">
     <div>
@@ -1282,9 +1488,9 @@ function parseCSV(text) {
 }
 
 function rowToEvent(row, idx) {
-  // categories column may be comma-separated inside the field, or pipe-separated
+  // categories column may be comma-separated inside the field, or pipe/semicolon-separated
   const rawCats = row.categories || '';
-  const cats = rawCats.split(/[|;]/).map(c => c.trim()).filter(Boolean);
+  const cats = rawCats.split(/[|;]|,\s*/).map(c => c.trim()).filter(Boolean);
   return {
     id: idx + 1,
     title: row.title || '(Untitled)',
@@ -1432,7 +1638,6 @@ function getPriceLabel(price) {
 // STATE
 // ═════════════════════════════════════════
 let activeView = 'calendar';
-let activeCalView = 'month'; // month | week | day
 let activeFilters = new Set();
 const allCategories = [];
 
@@ -1512,7 +1717,48 @@ function renderFilters() {
       renderCurrentCalView();
       renderGallery();
       renderMobileList();
+      renderThisWeek();
     });
+  });
+}
+
+// ═════════════════════════════════════════
+// THIS WEEK STRIP
+// ═════════════════════════════════════════
+function renderThisWeek() {
+  const section = document.getElementById('thisWeekSection');
+  const strip = document.getElementById('thisWeekStrip');
+  const filtered = getFilteredEvents();
+
+  const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const endDate = addDays(todayDate, 6);
+  const todayStr = toDateStr(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+  const endStr = toDateStr(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+
+  const weekEvents = filtered.filter(e => {
+    const start = e.date;
+    const end = e.endDate || e.date;
+    // Event overlaps with the 7-day window
+    return start <= endStr && end >= todayStr;
+  }).sort((a, b) => a.date.localeCompare(b.date) || (a.time || '').localeCompare(b.time || ''));
+
+  if (weekEvents.length === 0) {
+    section.style.display = 'none';
+    return;
+  }
+
+  section.style.display = 'block';
+  strip.innerHTML = weekEvents.map(e => {
+    const catClass = getCatClass(e.categories);
+    return `<div class="this-week-card ${catClass}" data-id="${e.id}">
+      <div class="this-week-title">${e.title}</div>
+      <div class="this-week-datetime">${formatDate(e.date)} · ${e.time || 'TBC'}</div>
+      <div class="this-week-location">${e.location || ''}</div>
+    </div>`;
+  }).join('');
+
+  strip.querySelectorAll('.this-week-card').forEach(el => {
+    el.addEventListener('click', () => openModal(parseInt(el.dataset.id)));
   });
 }
 
@@ -1522,25 +1768,25 @@ function renderFilters() {
 function updateMonthTitle() {
   const monthNames = ['January','February','March','April','May','June',
                       'July','August','September','October','November','December'];
-  const label = activeCalView === 'day'
-    ? formatDateLong(toDateStr(currentDay.getFullYear(), currentDay.getMonth(), currentDay.getDate()))
-    : activeCalView === 'week'
-    ? (() => {
-        const s = startOfWeek(currentDay);
-        const e = addDays(s, 6);
-        const sm = monthNames[s.getMonth()];
-        const em = monthNames[e.getMonth()];
-        return s.getMonth() === e.getMonth()
-          ? `${sm} ${s.getDate()}–${e.getDate()}, ${s.getFullYear()}`
-          : `${sm} ${s.getDate()} – ${em} ${e.getDate()}, ${e.getFullYear()}`;
-      })()
-    : `${monthNames[currentMonth]} ${currentYear}`;
-  document.getElementById('monthTitle').textContent = label;
+  document.getElementById('monthTitle').textContent = `${monthNames[currentMonth]} ${currentYear}`;
 }
 
 // ═════════════════════════════════════════
 // MONTH VIEW
 // ═════════════════════════════════════════
+
+// Map category name → border class
+function getCatBorderClass(categories) {
+  const primary = categories[0] || '';
+  const map = {
+    'Music': 'cat-border-music', 'Arts & Culture': 'cat-border-arts', 'Community': 'cat-border-community',
+    'Family': 'cat-border-family', 'Heritage': 'cat-border-heritage', 'Film': 'cat-border-film',
+    'Food & Drink': 'cat-border-food', 'Sport & Fitness': 'cat-border-sport', 'Education': 'cat-border-education',
+    'Comedy': 'cat-border-comedy', 'Dance': 'cat-border-dance', 'Entertainment': 'cat-border-entertainment'
+  };
+  return map[primary] || 'cat-border-community';
+}
+
 function renderCalendar() {
   const grid = document.getElementById('calendarGrid');
   const year = currentYear;
@@ -1553,126 +1799,177 @@ function renderCalendar() {
   const dayHeaders = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   let html = dayHeaders.map(d => `<div class="cal-day-header">${d}</div>`).join('');
 
-  for (let i = 0; i < firstDay; i++) html += `<div class="cal-day empty"></div>`;
+  // Build all day cells in order so we can apply alternating row tints
+  const dayCells = [];
+
+  // Leading empties
+  for (let i = 0; i < firstDay; i++) dayCells.push(`<div class="cal-day empty"></div>`);
 
   for (let day = 1; day <= daysInMonth; day++) {
     const dateStr = toDateStr(year, month, day);
     const isToday = dateStr === todayStr;
     const dayEvents = getEventsForDate(dateStr);
-    const maxShow = 3;
-    const shown = dayEvents.slice(0, maxShow);
-    const extra = dayEvents.length - maxShow;
+    const hasEvents = dayEvents.length > 0;
+    const maxDots = 4;
+    const shown = dayEvents.slice(0, maxDots);
+    const extra = dayEvents.length - maxDots;
 
-    const eventsHtml = shown.map(e =>
-      `<div class="cal-event ${getCatClass(e.categories)}" data-id="${e.id}">${e.title}</div>`
-    ).join('') + (extra > 0 ? `<div class="cal-more" data-date="${dateStr}">+${extra} more</div>` : '');
+    let dotsHtml = '';
+    if (hasEvents) {
+      dotsHtml = '<div class="cal-dots">';
+      dotsHtml += shown.map(e =>
+        `<span class="cal-dot ${getCatClass(e.categories)}"></span>`
+      ).join('');
+      if (extra > 0) {
+        dotsHtml += `<span class="cal-dot-more" data-date="${dateStr}">+${extra}</span>`;
+      }
+      dotsHtml += '</div>';
+    }
 
-    html += `<div class="cal-day${isToday ? ' today' : ''}">
-      <span class="cal-date">${day}</span>${eventsHtml}
-    </div>`;
+    const classes = ['cal-day'];
+    if (isToday) classes.push('today');
+    if (hasEvents) {
+      classes.push('has-events');
+      classes.push(getCatBorderClass(dayEvents[0].categories));
+    }
+
+    dayCells.push(`<div class="${classes.join(' ')}" data-date="${dateStr}">
+      <span class="cal-date">${day}</span>${dotsHtml}
+    </div>`);
   }
 
+  // Trailing empties
   const totalCells = firstDay + daysInMonth;
   const remaining = (7 - (totalCells % 7)) % 7;
-  for (let i = 0; i < remaining; i++) html += `<div class="cal-day empty"></div>`;
+  for (let i = 0; i < remaining; i++) dayCells.push(`<div class="cal-day empty"></div>`);
 
+  // Apply alternating row tint (every second row of 7 cells)
+  for (let i = 0; i < dayCells.length; i++) {
+    const row = Math.floor(i / 7);
+    if (row % 2 === 1) {
+      dayCells[i] = dayCells[i].replace('class="cal-day', 'class="cal-day cal-row-alt');
+    }
+  }
+
+  html += dayCells.join('');
   grid.innerHTML = html;
 
-  grid.querySelectorAll('.cal-event').forEach(el => {
-    el.addEventListener('click', () => openModal(parseInt(el.dataset.id)));
-  });
-  grid.querySelectorAll('.cal-more').forEach(el => {
-    el.addEventListener('click', (ev) => {
-      const dateStr = ev.currentTarget.dataset.date;
+  // Clicking any non-empty day cell → open day overlay
+  grid.querySelectorAll('.cal-day:not(.empty)').forEach(el => {
+    el.addEventListener('click', () => {
+      const dateStr = el.dataset.date;
+      if (!dateStr) return;
       const d = dateStrToDate(dateStr);
       currentDay = d;
-      switchCalView('day');
+      openDayOverlay();
     });
   });
 }
 
 // ═════════════════════════════════════════
-// WEEK VIEW
+// DAY OVERLAY
 // ═════════════════════════════════════════
-function renderWeek() {
-  const grid = document.getElementById('weekGrid');
-  const week0 = startOfWeek(currentDay);
-  const todayStr = toDateStr(today.getFullYear(), today.getMonth(), today.getDate());
-  const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
-  let html = '';
-
-  // Headers row
-  for (let i = 0; i < 7; i++) {
-    const d = addDays(week0, i);
-    const dateStr = toDateStr(d.getFullYear(), d.getMonth(), d.getDate());
-    const isToday = dateStr === todayStr;
-    html += `<div class="week-col-header${isToday ? ' today-col' : ''}">${dayNames[i]}<br>${monthNames[d.getMonth()]} ${d.getDate()}</div>`;
-  }
-
-  // Day columns
-  for (let i = 0; i < 7; i++) {
-    const d = addDays(week0, i);
-    const dateStr = toDateStr(d.getFullYear(), d.getMonth(), d.getDate());
-    const isToday = dateStr === todayStr;
-    const dayEvents = getEventsForDate(dateStr);
-
-    const eventsHtml = dayEvents.map(e =>
-      `<div class="week-event ${getCatClass(e.categories)}" data-id="${e.id}">${e.title}</div>`
-    ).join('') || '';
-
-    html += `<div class="week-col${isToday ? ' today-col' : ''}" data-date="${dateStr}">
-      ${eventsHtml}
-    </div>`;
-  }
-
-  grid.innerHTML = html;
-
-  grid.querySelectorAll('.week-event').forEach(el => {
-    el.addEventListener('click', () => openModal(parseInt(el.dataset.id)));
-  });
-
-  // Update week label
-  const s = week0;
-  const e = addDays(week0, 6);
-  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const label = s.getMonth() === e.getMonth()
-    ? `${months[s.getMonth()]} ${s.getDate()}–${e.getDate()}, ${s.getFullYear()}`
-    : `${months[s.getMonth()]} ${s.getDate()} – ${months[e.getMonth()]} ${e.getDate()}, ${e.getFullYear()}`;
-  document.getElementById('weekLabel').textContent = label;
+function openDayOverlay() {
+  renderDayOverlay();
+  document.getElementById('dayOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
-// ═════════════════════════════════════════
-// DAY VIEW
-// ═════════════════════════════════════════
-function renderDay() {
+function closeDayOverlay() {
+  document.getElementById('dayOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function renderDayOverlay() {
   const dateStr = toDateStr(currentDay.getFullYear(), currentDay.getMonth(), currentDay.getDate());
   const dayEvents = getEventsForDate(dateStr);
-  const container = document.getElementById('dayEventsList');
+  const container = document.getElementById('dayOverlayList');
 
-  document.getElementById('dayLabel').textContent = formatDateLong(dateStr);
+  // Format date — shorter on mobile
+  const dateLabel = formatDateLong(dateStr);
+  document.getElementById('dayOverlayDate').textContent = dateLabel;
 
   if (dayEvents.length === 0) {
-    container.innerHTML = `<div class="day-empty">No events on this day.</div>`;
+    container.innerHTML = `
+      <div class="day-overlay-empty">
+        <div class="day-overlay-empty-icon">📭</div>
+        No events on this day.
+      </div>`;
     return;
   }
 
-  container.innerHTML = dayEvents.map(e => `
-    <div class="day-event-row" data-id="${e.id}">
-      <div class="day-event-time">${e.time || 'TBC'}</div>
-      <div class="day-event-info">
-        <div class="day-event-title">${e.title}</div>
-        <div class="day-event-meta">${e.location || ''}</div>
+  container.innerHTML = dayEvents.map(e => {
+    const catClass = getCatClass(e.categories);
+    const pl = getPriceLabel(e.price);
+    return `
+    <div class="day-overlay-event ${catClass}" data-id="${e.id}">
+      <div class="day-overlay-event-time">${e.time || 'TBC'}</div>
+      <div class="day-overlay-event-info">
+        <div class="day-overlay-event-title">${e.title}</div>
+        <div class="day-overlay-event-loc">${e.location || ''}</div>
       </div>
-      <div><span class="card-price ${getPriceLabel(e.price).cls}">${getPriceLabel(e.price).text}</span></div>
-    </div>
-  `).join('');
+      <div class="day-overlay-event-price"><span class="card-price ${pl.cls}">${pl.text}</span></div>
+    </div>`;
+  }).join('');
 
-  container.querySelectorAll('.day-event-row').forEach(el => {
+  container.querySelectorAll('.day-overlay-event').forEach(el => {
     el.addEventListener('click', () => openModal(parseInt(el.dataset.id)));
   });
 }
+
+// Day overlay nav — prev/next day
+document.getElementById('dayOverlayPrev').addEventListener('click', (e) => {
+  e.stopPropagation();
+  currentDay = addDays(currentDay, -1);
+  syncMonthFromDay();
+  renderDayOverlay();
+  updateMonthTitle();
+});
+
+document.getElementById('dayOverlayNext').addEventListener('click', (e) => {
+  e.stopPropagation();
+  currentDay = addDays(currentDay, 1);
+  syncMonthFromDay();
+  renderDayOverlay();
+  updateMonthTitle();
+});
+
+// Day overlay close
+document.getElementById('dayOverlayClose').addEventListener('click', closeDayOverlay);
+document.getElementById('dayOverlay').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeDayOverlay();
+});
+
+// Support swipe left/right on day overlay for mobile nav
+(function() {
+  const overlay = document.getElementById('dayOverlay');
+  let touchStartX = 0;
+  let touchStartY = 0;
+  const content = overlay.querySelector('.day-overlay-content');
+
+  content.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  content.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // Only trigger if horizontal swipe > 60px and mostly horizontal
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      if (dx < 0) {
+        // Swipe left → next day
+        currentDay = addDays(currentDay, 1);
+      } else {
+        // Swipe right → prev day
+        currentDay = addDays(currentDay, -1);
+      }
+      syncMonthFromDay();
+      renderDayOverlay();
+      updateMonthTitle();
+    }
+  }, { passive: true });
+})();
 
 // ═════════════════════════════════════════
 // MOBILE LIST
@@ -1754,37 +2051,22 @@ function renderGallery() {
 }
 
 // ═════════════════════════════════════════
-// CAL SUB-VIEW SWITCHER
+// CALENDAR RENDERING (month view only)
 // ═════════════════════════════════════════
-function switchCalView(view) {
-  activeCalView = view;
 
-  document.querySelectorAll('.cal-view-tab').forEach(t => {
-    t.classList.toggle('active', t.dataset.calview === view);
-  });
-
-  document.getElementById('monthView').classList.toggle('active', view === 'month');
-  document.getElementById('weekView').classList.toggle('active', view === 'week');
-  document.getElementById('dayView').classList.toggle('active', view === 'day');
-
-  // Hide month nav arrows when in week/day (they have their own nav)
-  document.getElementById('prevMonth').style.display = view === 'month' ? '' : 'none';
-  document.getElementById('nextMonth').style.display = view === 'month' ? '' : 'none';
-
-  renderCurrentCalView();
-  updateMonthTitle();
+// Keep month/year in sync with currentDay
+function syncMonthFromDay() {
+  if (currentDay.getMonth() !== currentMonth || currentDay.getFullYear() !== currentYear) {
+    currentMonth = currentDay.getMonth();
+    currentYear = currentDay.getFullYear();
+    renderCalendar();
+    renderMobileList();
+  }
 }
 
 function renderCurrentCalView() {
-  if (activeCalView === 'month') renderCalendar();
-  else if (activeCalView === 'week') renderWeek();
-  else if (activeCalView === 'day') renderDay();
+  renderCalendar();
 }
-
-// Wire up cal sub-view tabs
-document.querySelectorAll('.cal-view-tab').forEach(tab => {
-  tab.addEventListener('click', () => switchCalView(tab.dataset.calview));
-});
 
 // ═════════════════════════════════════════
 // MONTH NAVIGATION
@@ -1792,6 +2074,7 @@ document.querySelectorAll('.cal-view-tab').forEach(tab => {
 document.getElementById('prevMonth').addEventListener('click', () => {
   currentMonth--;
   if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+  currentDay = new Date(currentYear, currentMonth, 1);
   renderCalendar();
   renderMobileList();
   updateMonthTitle();
@@ -1800,38 +2083,9 @@ document.getElementById('prevMonth').addEventListener('click', () => {
 document.getElementById('nextMonth').addEventListener('click', () => {
   currentMonth++;
   if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+  currentDay = new Date(currentYear, currentMonth, 1);
   renderCalendar();
   renderMobileList();
-  updateMonthTitle();
-});
-
-// ═════════════════════════════════════════
-// WEEK NAVIGATION
-// ═════════════════════════════════════════
-document.getElementById('prevWeek').addEventListener('click', () => {
-  currentDay = addDays(currentDay, -7);
-  renderWeek();
-  updateMonthTitle();
-});
-
-document.getElementById('nextWeek').addEventListener('click', () => {
-  currentDay = addDays(currentDay, 7);
-  renderWeek();
-  updateMonthTitle();
-});
-
-// ═════════════════════════════════════════
-// DAY NAVIGATION
-// ═════════════════════════════════════════
-document.getElementById('prevDay').addEventListener('click', () => {
-  currentDay = addDays(currentDay, -1);
-  renderDay();
-  updateMonthTitle();
-});
-
-document.getElementById('nextDay').addEventListener('click', () => {
-  currentDay = addDays(currentDay, 1);
-  renderDay();
   updateMonthTitle();
 });
 
@@ -1875,7 +2129,7 @@ document.getElementById('eventModal').addEventListener('click', (e) => {
   if (e.target === e.currentTarget) closeModal();
 });
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Escape') { closeDayOverlay(); closeModal(); }
 });
 
 // ═════════════════════════════════════════
@@ -1961,6 +2215,7 @@ async function init() {
   renderCurrentCalView();
   renderGallery();
   renderMobileList();
+  renderThisWeek();
   updateMonthTitle();
 }
 
