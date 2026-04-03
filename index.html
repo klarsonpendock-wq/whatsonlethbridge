@@ -89,9 +89,7 @@ body {
   color: var(--warm-white);
 }
 
-.site-title span {
-  color: var(--terra);
-}
+.site-title span { color: var(--terra); }
 
 .site-subtitle {
   font-size: 0.8rem;
@@ -126,9 +124,7 @@ body {
 
 .nav-tab:hover { color: var(--warm-white); }
 
-.nav-tab.active {
-  color: var(--warm-white);
-}
+.nav-tab.active { color: var(--warm-white); }
 
 .nav-tab.active::after {
   content: '';
@@ -190,7 +186,6 @@ body {
 
 .day-overlay.open { display: flex; }
 
-/* Mobile-first: slides up from bottom like a native sheet */
 .day-overlay-content {
   background: var(--warm-white);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
@@ -206,7 +201,6 @@ body {
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* Desktop: centered card instead of bottom sheet */
 @media (min-width: 769px) {
   .day-overlay {
     align-items: center;
@@ -301,9 +295,7 @@ body {
 
 .day-overlay-close:hover { background: var(--sand-dark); }
 
-.day-overlay-body {
-  padding: 16px 20px 24px;
-}
+.day-overlay-body { padding: 16px 20px 24px; }
 
 .day-overlay-list {
   display: flex;
@@ -332,7 +324,6 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-/* Category left-border colours for overlay event rows */
 .day-overlay-event.cat-music { border-left-color: var(--plum); }
 .day-overlay-event.cat-arts { border-left-color: var(--sage); }
 .day-overlay-event.cat-community { border-left-color: var(--sky); }
@@ -355,10 +346,7 @@ body {
   flex-shrink: 0;
 }
 
-.day-overlay-event-info {
-  flex: 1;
-  min-width: 0;
-}
+.day-overlay-event-info { flex: 1; min-width: 0; }
 
 .day-overlay-event-title {
   font-family: var(--font-display);
@@ -377,10 +365,7 @@ body {
   text-overflow: ellipsis;
 }
 
-.day-overlay-event-price {
-  flex-shrink: 0;
-  align-self: center;
-}
+.day-overlay-event-price { flex-shrink: 0; align-self: center; }
 
 .day-overlay-empty {
   text-align: center;
@@ -395,25 +380,12 @@ body {
   opacity: 0.5;
 }
 
-/* Touch-friendly: bigger tap targets on mobile */
 @media (max-width: 768px) {
-  .day-overlay-event {
-    padding: 16px;
-    gap: 12px;
-  }
-  .day-overlay-nav-btn {
-    width: 40px;
-    height: 40px;
-  }
-  .day-overlay-date {
-    font-size: 1rem;
-  }
-  .day-overlay-header {
-    padding: 16px 16px 12px;
-  }
-  .day-overlay-body {
-    padding: 12px 16px 28px;
-  }
+  .day-overlay-event { padding: 16px; gap: 12px; }
+  .day-overlay-nav-btn { width: 40px; height: 40px; }
+  .day-overlay-date { font-size: 1rem; }
+  .day-overlay-header { padding: 16px 16px 12px; }
+  .day-overlay-body { padding: 12px 16px 28px; }
 }
 
 /* ─── MONTH VIEW ─── */
@@ -463,10 +435,7 @@ body {
   white-space: nowrap;
 }
 
-.filter-chip:hover {
-  border-color: var(--terra);
-  color: var(--terra);
-}
+.filter-chip:hover { border-color: var(--terra); color: var(--terra); }
 
 .filter-chip.active {
   background: var(--charcoal);
@@ -474,23 +443,11 @@ body {
   color: var(--warm-white);
 }
 
-/* ─── CALENDAR DAY — event-bearing cells ─── */
-.cal-day.has-events {
-  background: var(--warm-white);
-}
+/* ─── CALENDAR ─── */
+.cal-day.has-events { background: var(--warm-white); }
+.cal-day.empty { background: var(--sand); opacity: 0.5; cursor: default; }
+.calendar-grid .cal-row-alt { background: rgba(212, 197, 169, 0.15); }
 
-.cal-day.empty {
-  background: var(--sand);
-  opacity: 0.5;
-  cursor: default;
-}
-
-/* Alternating calendar rows */
-.calendar-grid .cal-row-alt {
-  background: rgba(212, 197, 169, 0.15);
-}
-
-/* Event dot indicators */
 .cal-dots {
   display: flex;
   gap: 3px;
@@ -499,23 +456,9 @@ body {
   margin-top: 2px;
 }
 
-.cal-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  display: inline-block;
-  flex-shrink: 0;
-}
+.cal-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.cal-dot-more { font-size: 0.6rem; color: var(--terra); font-weight: 700; cursor: pointer; line-height: 1; }
 
-.cal-dot-more {
-  font-size: 0.6rem;
-  color: var(--terra);
-  font-weight: 700;
-  cursor: pointer;
-  line-height: 1;
-}
-
-/* Category dot colours */
 .cal-dot.cat-music { background: var(--plum); }
 .cal-dot.cat-arts { background: var(--sage); }
 .cal-dot.cat-community { background: var(--sky); }
@@ -529,7 +472,6 @@ body {
 .cal-dot.cat-dance { background: #8B5570; }
 .cal-dot.cat-entertainment { background: #7A5F6B; }
 
-/* Category bottom-border colours for day cells */
 .cal-day.cat-border-music { border-bottom: 3px solid var(--plum); }
 .cal-day.cat-border-arts { border-bottom: 3px solid var(--sage); }
 .cal-day.cat-border-community { border-bottom: 3px solid var(--sky); }
@@ -544,9 +486,7 @@ body {
 .cal-day.cat-border-entertainment { border-bottom: 3px solid #7A5F6B; }
 
 /* ─── THIS WEEK STRIP ─── */
-.this-week-section {
-  margin-bottom: 16px;
-}
+.this-week-section { margin-bottom: 16px; }
 
 .this-week-label {
   font-family: var(--font-body);
@@ -610,23 +550,10 @@ body {
   text-overflow: ellipsis;
 }
 
-.this-week-datetime {
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  color: var(--charcoal-light);
-  margin-bottom: 2px;
-}
+.this-week-datetime { font-family: var(--font-body); font-size: 0.7rem; color: var(--charcoal-light); margin-bottom: 2px; }
+.this-week-location { font-family: var(--font-body); font-size: 0.68rem; color: var(--stone); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-.this-week-location {
-  font-family: var(--font-body);
-  font-size: 0.68rem;
-  color: var(--stone);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* ─── CALENDAR VIEW ─── */
+/* ─── CALENDAR GRID ─── */
 .calendar-wrapper {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -720,13 +647,7 @@ body {
 .cal-event.cat-dance { background: #F3E8ED; color: #8B5570; }
 .cal-event.cat-entertainment { background: #EDE4E8; color: #7A5F6B; }
 
-.cal-more {
-  font-size: 0.65rem;
-  color: var(--terra);
-  font-weight: 600;
-  cursor: pointer;
-  padding: 2px 0;
-}
+.cal-more { font-size: 0.65rem; color: var(--terra); font-weight: 600; cursor: pointer; padding: 2px 0; }
 
 /* ─── GALLERY VIEW ─── */
 .gallery-grid {
@@ -752,11 +673,7 @@ body {
   border-color: transparent;
 }
 
-.card-color-bar {
-  height: 5px;
-  width: 100%;
-}
-
+.card-color-bar { height: 5px; width: 100%; }
 .card-color-bar.cat-music { background: var(--plum); }
 .card-color-bar.cat-arts { background: var(--sage); }
 .card-color-bar.cat-community { background: var(--sky); }
@@ -770,12 +687,7 @@ body {
 .card-color-bar.cat-dance { background: #8B5570; }
 .card-color-bar.cat-entertainment { background: #7A5F6B; }
 
-.card-body {
-  padding: 20px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
+.card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
 
 .card-date-row {
   display: flex;
@@ -784,96 +696,23 @@ body {
   margin-bottom: 10px;
 }
 
-.card-date {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--terra);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
+.card-date { font-size: 0.75rem; font-weight: 600; color: var(--terra); text-transform: uppercase; letter-spacing: 0.04em; }
 
-.card-price {
-  font-size: 0.7rem;
-  font-weight: 600;
-  padding: 2px 10px;
-  border-radius: 100px;
-  white-space: nowrap;
-}
+.card-price { font-size: 0.7rem; font-weight: 600; padding: 2px 10px; border-radius: 100px; white-space: nowrap; }
+.card-price.free { background: var(--sage-light); color: var(--sage); }
+.card-price.paid { background: var(--amber-light); color: #8B6A2A; }
+.card-price.sold-out { background: var(--rose-light); color: var(--rose); }
 
-.card-price.free {
-  background: var(--sage-light);
-  color: var(--sage);
-}
+.card-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; line-height: 1.3; margin-bottom: 8px; color: var(--charcoal); letter-spacing: -0.01em; }
 
-.card-price.paid {
-  background: var(--amber-light);
-  color: #8B6A2A;
-}
+.card-meta { font-size: 0.78rem; color: var(--stone); margin-bottom: 10px; display: flex; flex-direction: column; gap: 3px; }
+.card-meta-item { display: flex; align-items: center; gap: 6px; }
+.card-meta-item svg { flex-shrink: 0; width: 14px; height: 14px; color: var(--stone); }
 
-.card-price.sold-out {
-  background: var(--rose-light);
-  color: var(--rose);
-}
+.card-desc { font-size: 0.82rem; color: var(--charcoal-light); line-height: 1.55; flex: 1; margin-bottom: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
-.card-title {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 600;
-  line-height: 1.3;
-  margin-bottom: 8px;
-  color: var(--charcoal);
-  letter-spacing: -0.01em;
-}
-
-.card-meta {
-  font-size: 0.78rem;
-  color: var(--stone);
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.card-meta-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.card-meta-item svg {
-  flex-shrink: 0;
-  width: 14px;
-  height: 14px;
-  color: var(--stone);
-}
-
-.card-desc {
-  font-size: 0.82rem;
-  color: var(--charcoal-light);
-  line-height: 1.55;
-  flex: 1;
-  margin-bottom: 14px;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.card-tags {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-top: auto;
-}
-
-.card-tag {
-  font-size: 0.65rem;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 100px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
+.card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; }
+.card-tag { font-size: 0.65rem; font-weight: 600; padding: 3px 10px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.06em; }
 
 /* ─── EVENT MODAL ─── */
 .modal-overlay {
@@ -900,14 +739,8 @@ body {
   position: relative;
 }
 
-.modal-bar {
-  height: 5px;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-}
-
-.modal-inner {
-  padding: 28px;
-}
+.modal-bar { height: 5px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+.modal-inner { padding: 28px; }
 
 .modal-close {
   position: absolute;
@@ -930,67 +763,16 @@ body {
 
 .modal-close:hover { background: var(--sand-dark); }
 
-.modal-date {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--terra);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 6px;
-}
+.modal-date { font-size: 0.8rem; font-weight: 600; color: var(--terra); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.modal-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; line-height: 1.25; margin-bottom: 16px; color: var(--charcoal); padding-right: 30px; }
 
-.modal-title {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.25;
-  margin-bottom: 16px;
-  color: var(--charcoal);
-  padding-right: 30px;
-}
+.modal-details { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; padding: 14px; background: var(--sand); border-radius: var(--radius-md); }
+.modal-detail { display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: var(--charcoal-light); }
+.modal-detail svg { width: 16px; height: 16px; color: var(--stone); flex-shrink: 0; }
+.modal-detail strong { font-weight: 600; color: var(--charcoal); }
 
-.modal-details {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 18px;
-  padding: 14px;
-  background: var(--sand);
-  border-radius: var(--radius-md);
-}
-
-.modal-detail {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.82rem;
-  color: var(--charcoal-light);
-}
-
-.modal-detail svg {
-  width: 16px;
-  height: 16px;
-  color: var(--stone);
-  flex-shrink: 0;
-}
-
-.modal-detail strong {
-  font-weight: 600;
-  color: var(--charcoal);
-}
-
-.modal-desc {
-  font-size: 0.88rem;
-  line-height: 1.65;
-  color: var(--charcoal-light);
-  margin-bottom: 20px;
-}
-
-.modal-tags {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
+.modal-desc { font-size: 0.88rem; line-height: 1.65; color: var(--charcoal-light); margin-bottom: 20px; }
+.modal-tags { display: flex; gap: 6px; flex-wrap: wrap; }
 
 .modal-link {
   display: inline-flex;
@@ -1010,65 +792,20 @@ body {
 .modal-link:hover { background: var(--terra-dark); }
 
 /* ─── SUBMIT FORM ─── */
-.submit-section {
-  display: none;
-}
-
+.submit-section { display: none; }
 .submit-section.active { display: block; }
 
-.submit-intro {
-  max-width: 600px;
-  margin-bottom: 28px;
-}
+.submit-intro { max-width: 600px; margin-bottom: 28px; }
+.submit-intro h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; color: var(--charcoal); }
+.submit-intro p { color: var(--charcoal-light); font-size: 0.9rem; line-height: 1.6; }
 
-.submit-intro h2 {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: var(--charcoal);
-}
+.submit-form { background: var(--warm-white); border: 1px solid var(--sand-dark); border-radius: var(--radius-lg); padding: 28px; max-width: 640px; }
 
-.submit-intro p {
-  color: var(--charcoal-light);
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-.submit-form {
-  background: var(--warm-white);
-  border: 1px solid var(--sand-dark);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  max-width: 640px;
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.form-group.full-width {
-  grid-column: 1 / -1;
-}
-
-.form-group label {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--charcoal);
-  letter-spacing: 0.02em;
-}
-
-.form-group label .req {
-  color: var(--terra);
-}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+.form-group.full-width { grid-column: 1 / -1; }
+.form-group label { font-size: 0.78rem; font-weight: 600; color: var(--charcoal); letter-spacing: 0.02em; }
+.form-group label .req { color: var(--terra); }
 
 .form-group input,
 .form-group select,
@@ -1086,21 +823,14 @@ body {
 
 .form-group input:focus,
 .form-group select:focus,
-.form-group textarea:focus {
-  border-color: var(--terra);
-}
+.form-group textarea:focus { border-color: var(--terra); }
 
-.form-group textarea {
-  resize: vertical;
-  min-height: 100px;
-}
+.form-group textarea { resize: vertical; min-height: 100px; }
 
-.form-submit {
-  margin-top: 20px;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
+/* Honeypot — visually hidden from real users */
+.form-honeypot { display: none !important; }
+
+.form-submit { margin-top: 20px; display: flex; gap: 12px; align-items: center; }
 
 .btn-submit {
   background: var(--charcoal);
@@ -1116,11 +846,7 @@ body {
 }
 
 .btn-submit:hover { background: var(--terra-dark); }
-
-.form-note {
-  font-size: 0.75rem;
-  color: var(--stone);
-}
+.form-note { font-size: 0.75rem; color: var(--stone); }
 
 .form-success {
   display: none;
@@ -1132,6 +858,179 @@ body {
   text-align: center;
 }
 
+/* ─── BLOG ─── */
+.blog-section { display: none; }
+.blog-section.active { display: block; }
+
+.blog-intro { max-width: 680px; margin-bottom: 32px; }
+.blog-intro h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; color: var(--charcoal); }
+.blog-intro p { color: var(--charcoal-light); font-size: 0.9rem; line-height: 1.6; }
+
+.blog-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.blog-card {
+  background: var(--warm-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--sand-dark);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+
+.blog-card-accent { height: 4px; background: var(--terra); width: 100%; }
+
+.blog-card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+
+.blog-card-date {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--stone);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 8px;
+}
+
+.blog-card-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 10px;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+}
+
+.blog-card-summary {
+  font-size: 0.83rem;
+  color: var(--charcoal-light);
+  line-height: 1.55;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-card-read {
+  margin-top: 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--terra);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Blog post view — full content */
+.blog-post-view { display: none; max-width: 720px; }
+.blog-post-view.active { display: block; }
+
+.blog-back {
+  background: none;
+  border: none;
+  color: var(--terra);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 24px;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.blog-back:hover { color: var(--terra-dark); }
+
+.blog-post-date { font-size: 0.75rem; font-weight: 600; color: var(--stone); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
+
+.blog-post-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--charcoal);
+  margin-bottom: 24px;
+}
+
+.blog-post-loading {
+  padding: 60px 0;
+  text-align: center;
+  color: var(--stone);
+}
+
+.blog-post-loading .spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--sand-dark);
+  border-top-color: var(--terra);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto 16px;
+}
+
+.blog-post-error {
+  padding: 32px;
+  background: var(--rose-light);
+  border-radius: var(--radius-md);
+  color: var(--rose);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* Google Docs rendered HTML overrides — scoped to blog content */
+.blog-post-content {
+  font-size: 0.93rem;
+  line-height: 1.75;
+  color: var(--charcoal-light);
+}
+
+.blog-post-content p { margin-bottom: 1.2em; }
+.blog-post-content h1,
+.blog-post-content h2,
+.blog-post-content h3 {
+  font-family: var(--font-display);
+  color: var(--charcoal);
+  margin: 1.6em 0 0.5em;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.blog-post-content h1 { font-size: 1.5rem; }
+.blog-post-content h2 { font-size: 1.25rem; }
+.blog-post-content h3 { font-size: 1.05rem; }
+.blog-post-content ul,
+.blog-post-content ol { margin: 0.8em 0 1.2em 1.4em; }
+.blog-post-content li { margin-bottom: 0.4em; }
+.blog-post-content img { max-width: 100%; border-radius: var(--radius-md); margin: 1.2em 0; }
+.blog-post-content a { color: var(--terra); text-decoration: underline; text-underline-offset: 2px; }
+.blog-post-content blockquote {
+  border-left: 3px solid var(--terra);
+  margin: 1.2em 0;
+  padding: 8px 16px;
+  background: var(--sand);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--charcoal);
+  font-style: italic;
+}
+.blog-post-content hr { border: none; border-top: 1px solid var(--sand-dark); margin: 2em 0; }
+
+/* Strip Google Docs wrapper noise */
+.blog-post-content .doc-content > * { max-width: 100%; }
 
 /* ─── FOOTER ─── */
 .site-footer {
@@ -1172,6 +1071,7 @@ body {
   .calendar-grid { display: none; }
   .mobile-list { display: block !important; }
   .gallery-grid { grid-template-columns: 1fr; }
+  .blog-posts-grid { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .header-top { padding: 16px; }
   .site-title { font-size: 1.35rem; }
@@ -1179,13 +1079,12 @@ body {
   .main-content { padding: 20px 16px 40px; }
   .modal-inner { padding: 20px; }
   .this-week-strip { overflow-x: auto; }
+  .blog-post-title { font-size: 1.5rem; }
 }
 
 .mobile-list { display: none; }
 
-.mobile-day-group {
-  margin-bottom: 20px;
-}
+.mobile-day-group { margin-bottom: 20px; }
 
 .mobile-day-label {
   font-family: var(--font-display);
@@ -1208,17 +1107,8 @@ body {
 }
 
 .mobile-event-item:hover { box-shadow: var(--shadow-sm); }
-
-.mobile-event-time {
-  font-size: 0.72rem;
-  color: var(--stone);
-  font-weight: 500;
-}
-
-.mobile-event-title {
-  font-weight: 600;
-  font-size: 0.88rem;
-}
+.mobile-event-time { font-size: 0.72rem; color: var(--stone); font-weight: 500; }
+.mobile-event-title { font-weight: 600; font-size: 0.88rem; }
 
 /* ─── SECTION VISIBILITY ─── */
 .view-section { display: none; }
@@ -1237,12 +1127,8 @@ body {
 .event-card:nth-child(5) { animation-delay: 0.16s; }
 .event-card:nth-child(6) { animation-delay: 0.2s; }
 
-/* ─── LOADING / ERROR STATES ─── */
-.loading-state {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--stone);
-}
+/* ─── LOADING / ERROR ─── */
+.loading-state { text-align: center; padding: 60px 20px; color: var(--stone); }
 
 .loading-state .spinner {
   width: 36px;
@@ -1266,32 +1152,11 @@ body {
   margin: 0 auto;
 }
 
-.error-state h3 {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  color: var(--rose);
-  margin-bottom: 8px;
-}
+.error-state h3 { font-family: var(--font-display); font-size: 1.1rem; color: var(--rose); margin-bottom: 8px; }
+.error-state p { font-size: 0.85rem; color: var(--charcoal-light); line-height: 1.6; }
 
-.error-state p {
-  font-size: 0.85rem;
-  color: var(--charcoal-light);
-  line-height: 1.6;
-}
-
-/* ─── EMPTY STATE ─── */
-.empty-state {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--stone);
-}
-
-.empty-state h3 {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  color: var(--charcoal-light);
-  margin-bottom: 8px;
-}
+.empty-state { text-align: center; padding: 60px 20px; color: var(--stone); }
+.empty-state h3 { font-family: var(--font-display); font-size: 1.2rem; color: var(--charcoal-light); margin-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -1306,7 +1171,9 @@ body {
   <nav class="header-nav">
     <button class="nav-tab active" data-view="calendar">Calendar</button>
     <button class="nav-tab" data-view="gallery">Gallery</button>
+    <button class="nav-tab" data-view="blog">Blog</button>
     <button class="nav-tab" data-view="submit">Submit an Event</button>
+
   </nav>
 </header>
 
@@ -1326,25 +1193,44 @@ body {
 
     <!-- Calendar View -->
     <div class="view-section active" id="view-calendar">
-      <!-- This Week strip -->
       <div class="this-week-section" id="thisWeekSection" style="display:none">
         <div class="this-week-label">This Week</div>
         <div class="this-week-strip" id="thisWeekStrip"></div>
       </div>
-
-      <!-- Month view -->
       <div class="month-view" id="monthView">
         <div class="calendar-wrapper">
           <div class="calendar-grid" id="calendarGrid"></div>
         </div>
       </div>
-
       <div class="mobile-list" id="mobileList"></div>
     </div>
 
     <!-- Gallery View -->
     <div class="view-section" id="view-gallery">
       <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </div>
+
+  <!-- BLOG VIEW -->
+  <div class="blog-section" id="view-blog">
+    <div class="blog-intro">
+      <h2>From the Calendar</h2>
+      <p>Updates, event roundups, and stories from around Lethbridge.</p>
+    </div>
+
+    <!-- Post list -->
+    <div id="blogListView">
+      <div class="blog-posts-grid" id="blogGrid">
+        <div class="loading-state"><div class="spinner"></div><p>Loading posts…</p></div>
+      </div>
+    </div>
+
+    <!-- Single post view -->
+    <div id="blogPostView" class="blog-post-view">
+      <button class="blog-back" id="blogBackBtn">&#8592; All Posts</button>
+      <div class="blog-post-date" id="blogPostDate"></div>
+      <div class="blog-post-title" id="blogPostTitle"></div>
+      <div id="blogPostBody"></div>
     </div>
   </div>
 
@@ -1358,7 +1244,7 @@ body {
       <div class="form-grid" id="submitFormGrid">
         <div class="form-group full-width">
           <label for="f-name">Event Name <span class="req">*</span></label>
-          <input type="text" id="f-name" placeholder="e.g. Spring Art Walk" required>
+          <input type="text" id="f-name" placeholder="e.g. Spring Art Walk" required autocomplete="off">
         </div>
         <div class="form-group">
           <label for="f-date">Date(s) <span class="req">*</span></label>
@@ -1376,14 +1262,14 @@ body {
           <label for="f-category">Category</label>
           <select id="f-category">
             <option value="">Select…</option>
-            <option>Arts & Culture</option>
+            <option>Arts &amp; Culture</option>
             <option>Music</option>
             <option>Community</option>
             <option>Family</option>
             <option>Heritage</option>
             <option>Film</option>
-            <option>Sport & Fitness</option>
-            <option>Food & Drink</option>
+            <option>Sport &amp; Fitness</option>
+            <option>Food &amp; Drink</option>
             <option>Education</option>
             <option>Comedy</option>
             <option>Dance</option>
@@ -1403,8 +1289,13 @@ body {
           <textarea id="f-desc" placeholder="Tell us about the event — what it is, who it's for, and anything else attendees should know."></textarea>
         </div>
         <div class="form-group full-width">
-          <label for="f-contact">Your Name & Email (not published)</label>
+          <label for="f-contact">Your Name &amp; Email (not published)</label>
           <input type="text" id="f-contact" placeholder="So we can follow up if needed">
+        </div>
+        <!-- Honeypot: hidden from real users, bots will fill it -->
+        <div class="form-honeypot" aria-hidden="true">
+          <label for="f-website">Website</label>
+          <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
         </div>
       </div>
       <div class="form-submit">
@@ -1416,27 +1307,30 @@ body {
       </div>
     </div>
   </div>
+
+
+
 </main>
 
 <!-- MODAL -->
-<div class="modal-overlay" id="eventModal">
+<div class="modal-overlay" id="eventModal" role="dialog" aria-modal="true">
   <div class="modal-content">
     <div class="modal-bar" id="modalBar"></div>
-    <button class="modal-close" id="modalClose">✕</button>
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
     <div class="modal-inner" id="modalInner"></div>
   </div>
 </div>
 
 <!-- DAY OVERLAY -->
-<div class="day-overlay" id="dayOverlay">
+<div class="day-overlay" id="dayOverlay" role="dialog" aria-modal="true">
   <div class="day-overlay-content">
     <div class="day-overlay-header">
       <div class="day-overlay-nav">
-        <button class="day-overlay-nav-btn" id="dayOverlayPrev">&#8592;</button>
+        <button class="day-overlay-nav-btn" id="dayOverlayPrev" aria-label="Previous day">&#8592;</button>
         <div class="day-overlay-date" id="dayOverlayDate"></div>
-        <button class="day-overlay-nav-btn" id="dayOverlayNext">&#8594;</button>
+        <button class="day-overlay-nav-btn" id="dayOverlayNext" aria-label="Next day">&#8594;</button>
       </div>
-      <button class="day-overlay-close" id="dayOverlayClose">✕</button>
+      <button class="day-overlay-close" id="dayOverlayClose" aria-label="Close">✕</button>
     </div>
     <div class="day-overlay-body">
       <div class="day-overlay-list" id="dayOverlayList"></div>
@@ -1448,9 +1342,7 @@ body {
   <div class="footer-inner">
     <div>
       <div class="footer-links">
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-        <a href="#">Sources</a>
+        <a href="#" onclick="switchView('submit'); return false;">Submit an Event</a>
       </div>
     </div>
     <div class="footer-note">
@@ -1461,17 +1353,45 @@ body {
 
 <script>
 // ═════════════════════════════════════════
+// SECURITY: HTML ESCAPE
+// Applied to ALL Sheet/user data before it touches innerHTML
+// ═════════════════════════════════════════
+function esc(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// Safe URL: only allow http/https links — drop anything else
+function safeUrl(url) {
+  if (!url) return '';
+  const trimmed = url.trim();
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return '';
+}
+
+// ═════════════════════════════════════════
 // GOOGLE SHEETS CSV SOURCE
 // ═════════════════════════════════════════
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTM2c983bRewVHbufSyrDqnezM9Tm02VKr7jKL3qZpHeaEMYdUoLL2-yQRdOKBu_EsopBjnCS-IWGJu/pub?output=csv';
 
+// ═════════════════════════════════════════
+// BLOG: Google Sheets index (same Sheet, second tab published as CSV)
+// Replace BLOG_CSV_URL with the published CSV of your blog index tab.
+// Columns expected: title, date, summary, doc_url, status
+// Set status = "published" for posts to appear.
+// ═════════════════════════════════════════
+const BLOG_CSV_URL = ''; // TODO: paste your blog index CSV URL here
 
 function parseCSV(text) {
   const lines = text.trim().split('\n');
   if (lines.length < 2) return [];
   const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
-  return lines.slice(1).map((line, idx) => {
-    // Handle quoted fields that may contain commas
+  return lines.slice(1).map((line) => {
     const cols = [];
     let cur = '', inQ = false;
     for (let i = 0; i < line.length; i++) {
@@ -1488,7 +1408,6 @@ function parseCSV(text) {
 }
 
 function rowToEvent(row, idx) {
-  // categories column may be comma-separated inside the field, or pipe/semicolon-separated
   const rawCats = row.categories || '';
   const cats = rawCats.split(/[|;]|,\s*/).map(c => c.trim()).filter(Boolean);
   return {
@@ -1516,85 +1435,35 @@ function showErrorState() {
   const errHtml = `
     <div class="error-state">
       <h3>Couldn't load events</h3>
-      <p>We weren't able to fetch the event calendar right now. Please try refreshing the page, or check back shortly. If the problem persists, contact the site administrator.</p>
+      <p>We weren't able to fetch the event calendar right now. Please try refreshing the page, or check back shortly.</p>
     </div>`;
   document.getElementById('calendarGrid').innerHTML = errHtml;
   document.getElementById('galleryGrid').innerHTML = errHtml;
 }
 
-// ═════════════════════════════════════════
-// HARDCODED FALLBACK DATA — April 2026
-// (kept as reference; replaced by Sheet at runtime)
-// ═════════════════════════════════════════
+// ─── HARDCODED FALLBACK DATA (reference only — not used at runtime) ───
 const _hardcodedEvents = [
   {id:1,title:"Crafternoon (U of L Art Gallery)",date:"2026-04-01",time:"1:00 PM",location:"U of L Art Gallery, University of Lethbridge",categories:["Arts & Culture","Family","Community"],price:"Free",description:"Drop-in creative afternoon. Activities include origami, collage, watercolour, and fibre arts. Free tea provided. No experience needed. Bring your own project or use what's there.",link:"https://www.ulethbridge.ca/fine-arts/event-season"},
   {id:2,title:"U of L Jazz Ensemble Concert",date:"2026-04-01",time:"7:30 PM",location:"University Theatre W500, U of L Centre for the Arts",categories:["Music"],price:"TBC",description:"The Jazz Ensemble performs an eclectic mix of big band, vintage jazz, and contemporary works under the direction of Dr. Josh Davies.",link:"https://www.ulethbridge.ca/fine-arts/event-season"},
   {id:3,title:'Casa Spring Art Camp — "Hot Off the Press"',date:"2026-04-01",endDate:"2026-04-05",time:"9:00 AM – 12:00 PM daily",location:"Casa Community Arts Centre, 230 8th St South",categories:["Education","Arts & Culture","Family"],price:"$175",description:"Printmaking camp (ages 9–13). Students etch, carve, roll, stamp, and print drawings to make cards, zines, and prints. Materials provided. Runs April 1–5.",link:"https://casalethbridge.ca/events"},
   {id:4,title:'Casa Spring Art Camp — "Art Mix-Up"',date:"2026-04-01",endDate:"2026-04-05",time:"1:00 PM – 4:00 PM daily",location:"Casa Community Arts Centre, 230 8th St South",categories:["Education","Arts & Culture","Family"],price:"$175",description:"Mixed-media camp for ages 6–9. Explores collage, drawing, and new materials. Kids make handmade cards and unique multiples. Runs April 1–5.",link:"https://casalethbridge.ca/events"},
-  {id:5,title:"Lethbridge Symphony — Kids Choir Concert (Night 1)",date:"2026-04-01",time:"7:00 PM",location:"Sterndale Bennett Theatre, 1002 4th Ave South",categories:["Music","Family"],price:"Ticketed",description:"Regional school choirs perform with the Lethbridge Symphony. Pre-concert chat at 7:00 PM with musicians.",link:"https://www.lethbridgesymphony.org"},
+  {id:5,title:"Lethbridge Symphony — Kids Choir Concert (Night 1)",date:"2026-04-01",time:"7:00 PM",location:"Sterndale Bennett Theatre, 1002 4th Ave South",categories:["Music","Family"],price:"Ticketed",description:"Regional school choirs perform with the Lethbridge Symphony.",link:"https://www.lethbridgesymphony.org"},
   {id:6,title:"Lethbridge Symphony — Kids Choir Concert (Night 2)",date:"2026-04-02",time:"8:00 PM",location:"Sterndale Bennett Theatre, 1002 4th Ave South",categories:["Music","Family"],price:"Ticketed",description:"Second night of school choir performances with the LSO.",link:"https://www.lethbridgesymphony.org"},
   {id:7,title:"Padawan Trivia Night",date:"2026-04-02",time:"7:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Community"],price:"TBC",description:"Recurring themed trivia night. No reservations on Trivia Night. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:8,title:"SAAG — Free First Friday + Youth Art Club",date:"2026-04-03",time:"11:00 AM – 7:00 PM",location:"SAAG, 601 3 Ave South",categories:["Arts & Culture","Community","Family"],price:"Free",description:"Free admission all day. Youth Art Club (ages 12+) runs 1:00–3:00 PM — drop-in for middle/high school youth to create art and tour exhibitions. Note: Confirm SAAG is open on Good Friday.",link:"https://www.saag.ca/calendar"},
-  {id:9,title:"Easter Egg Hunt — Kinsman Park",date:"2026-04-04",time:"1:00 PM",location:"Kinsman Park",categories:["Community","Family"],price:"Free",description:"3rd Annual community egg hunt with treat bags. Suitable for young children and the young at heart.",link:"https://calendar.lethbridge.ca"},
-  {id:10,title:"Craft Day — Ukrainian Eggs (SHARP Society)",date:"2026-04-04",time:"1:00 PM",location:"TBC (SHARP Society)",categories:["Community","Arts & Culture"],price:"Free",description:"Learn pysanka (Ukrainian egg decoration). Inclusive, recovery-focused craft event hosted by the S.H.A.R.P. Society.",link:""},
-  {id:11,title:"Easter Egg Hunt at Fort Whoop-Up",date:"2026-04-04",time:"10:30 AM – 3:00 PM",location:"Fort Whoop-Up, 200 Indian Battle Road South",categories:["Heritage","Family"],price:"Admission applies",description:"Family Easter Egg Hunt inside historic Fort Whoop-Up in the Oldman River Valley. Explore the fort and search for hidden eggs. Free for Galt members and self-identified Indigenous visitors.",link:"https://www.galtmuseum.com/events"},
-  {id:12,title:"Burnt Lung",date:"2026-04-04",time:"8:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Music"],price:"TBC",description:"Live music at the Owl. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:13,title:"6th Annual Green Shirt Day Family Skate",date:"2026-04-07",time:"Doors 4:30 PM",location:"Logan Boulet Arena",categories:["Community","Family","Sport & Fitness"],price:"Free",description:"Annual free family skate honouring Green Shirt Day and Logan Boulet's legacy of organ and tissue donation. Wear green. Bring your own skates and helmet.",link:"https://calendar.lethbridge.ca"},
-  {id:14,title:"Creative Community — April",date:"2026-04-07",time:"10:30 – 11:30 AM",location:"Galt Museum & Archives, 502 1st St South",categories:["Heritage","Arts & Culture"],price:"Admission applies",description:"Monthly art activity program for adults and seniors, connected to current museum exhibitions and local history. Free for Galt members.",link:"https://www.galtmuseum.com/events"},
-  {id:15,title:"SAAG — Senior's Tour & Tea",date:"2026-04-07",time:"10:30 AM – 12:00 PM",location:"SAAG, 601 3 Ave South",categories:["Arts & Culture","Community"],price:"Free",description:"Monthly guided tour of current exhibitions with art activity, tea, biscuits, and community. For seniors (65+).",link:"https://www.saag.ca/calendar"},
-  {id:16,title:"ART/Work: Canada Council with Michelle Schultz",date:"2026-04-08",time:"6:30 PM",location:"Casa — Community Room, 230 8th St South",categories:["Education","Community","Arts & Culture"],price:"Free",description:"Professional development session for artists and organizations. Covers national arts funding through the Canada Council, the Alberta Focus Initiative, and practical application strategies.",link:"https://casalethbridge.ca/events"},
-  {id:17,title:"Chippendales: Talk Dirty To Me World Tour",date:"2026-04-08",time:"8:00 PM",location:"Cavendish Farms Centre, 2510 Scenic Drive South",categories:["Entertainment"],price:"Ticketed",description:"Touring entertainment production. 18+ event.",link:""},
-  {id:18,title:"Garret T. Willie",date:"2026-04-09",time:"8:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Music"],price:"Ticketed",description:"Country music at the Owl. Check Showpass for tickets. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:19,title:"SAAG — Bletcher Hour (Critical Reading Group)",date:"2026-04-09",time:"6:00 PM – 7:00 PM",location:"SAAG, 601 3 Ave South",categories:["Education","Arts & Culture","Community"],price:"Free",description:"Monthly reading group exploring themes connected to current exhibitions. Online attendance option available. Registration encouraged: hkehoe@saag.ca.",link:"https://www.saag.ca/calendar"},
-  {id:20,title:"Paint & Sip w/ Smelotie Mpofu",date:"2026-04-10",time:"6:00 PM – 8:00 PM",location:"Galt Museum & Archives, 502 1st St South",categories:["Arts & Culture","Food & Drink","Community"],price:"Ticketed",description:"Spring florals-themed paint and sip with artist Smelotie Mpofu. Includes wine or soda + charcuterie from Gather & Graze. No experience needed. Registration required.",link:"https://www.galtmuseum.com/events"},
-  {id:21,title:"Galacticas",date:"2026-04-10",time:"8:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Music"],price:"TBC",description:"Live music at the Owl. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:22,title:"Lethbridge Symphony Chamber VI — Brave New Worlds",date:"2026-04-11",time:"Evening (TBC)",location:"Sterndale Bennett Theatre, 1011 4 Ave South",categories:["Music","Arts & Culture"],price:"Ticketed",description:"Season finale of the Musaeus String Quartet. Features LSO's Sarah Viejou on French horn and a world premiere by local Blackfoot composer Sonny-Ray Day Rider.",link:"https://www.lethbridgesymphony.org"},
-  {id:23,title:"Lethbridge Spring Fiesta 2026",date:"2026-04-11",time:"TBC",location:"TBC",categories:["Community","Arts & Culture"],price:"TBC",description:"A celebration of colour, music, and vibrant energy to welcome spring. Details TBC — check calendar.lethbridge.ca.",link:"https://calendar.lethbridge.ca"},
-  {id:24,title:'Film of the Month — "Doux Jésus" (French)',date:"2026-04-11",time:"6:00 PM",location:"The Movie Mill, Lethbridge",categories:["Film","Arts & Culture"],price:"By donation",description:"French comedy film with English subtitles. Sister Lucie, a nun for 20 years, runs away to find her first love after a medical diagnosis. Registration required.",link:""},
-  {id:25,title:"Nightshades",date:"2026-04-11",time:"8:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Music"],price:"TBC",description:"Live music at the Owl. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:26,title:"Rumble in the Cage (RITC 71)",date:"2026-04-11",time:"Doors 5:00 PM / Fights 6:00 PM",location:"Lethbridge Servus Sports Centre",categories:["Sport & Fitness","Entertainment"],price:"$60 advance / $80 door",description:"Canada's longest-running MMA promotion, 71st event. Features MMA, Bare-Knuckle Boxing, and Super-Boxing. VIP tables available.",link:"https://rumbleinthecage.ca"},
-  {id:27,title:"My Son the Hurricane",date:"2026-04-12",time:"6:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Music"],price:"Ticketed",description:"High-energy brass-funk band. Tickets limited — selling fast on Showpass. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:28,title:"Piano Masterclass — Dr. Deanna Oye",date:"2026-04-13",time:"5:00 – 7:00 PM",location:"Casa — Community Room, 230 8th St South",categories:["Education","Music"],price:"TBC",description:"U of L Conservatory masterclass for piano students and advanced community students. Observers welcome.",link:"https://www.ulethbridge.ca/fine-arts/event-season"},
-  {id:29,title:"Kevin Giron's Open Jam",date:"2026-04-14",time:"8:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Music","Community"],price:"Free/Low cover",description:"Recurring open jam night. Bring an instrument or come to listen. All musicians and genres welcome. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:30,title:"Ryan McMahon",date:"2026-04-15",time:"8:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Music","Comedy"],price:"TBC",description:"Live performance at the Owl. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:31,title:"Library Trivia Night",date:"2026-04-16",time:"7:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Community"],price:"Free",description:"Recurring pub trivia in partnership with the Library. No reservations on Trivia Night. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:32,title:"Michael Charles",date:"2026-04-16",time:"TBC",location:"The Slice, Lethbridge",categories:["Music"],price:"TBC",description:"Live music at The Slice.",link:""},
-  {id:33,title:"Abbondànza Fundraiser Dinner (U of L Fine Arts)",date:"2026-04-17",time:"Evening (TBC)",location:"University of Lethbridge",categories:["Education","Arts & Culture","Community"],price:"Ticketed (gala)",description:"Annual fundraiser dinner for student awards and experiential learning. Scheduled the night before Vibe Fest. Sponsorship opportunities available.",link:"https://www.ulethbridge.ca/fine-arts/event-season"},
-  {id:34,title:"Wheatus — SOLD OUT",date:"2026-04-17",time:"8:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Music"],price:"SOLD OUT",description:"Rock band Wheatus at the Owl. This show is sold out. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:35,title:"Lethbridge International Film Festival (LIFF) — Opening",date:"2026-04-17",endDate:"2026-04-20",time:"Opens 1:00 PM",location:"Galt Museum / The Movie Mill / Sterndale Bennett Theatre",categories:["Film","Arts & Culture"],price:"Ticketed (varies)",description:"4th Annual LIFF. 70+ films from 18 countries, 13 local productions. Features Q&As, live scores over silent films, sharing circles, and Audience Choice Awards. Runs April 17–20.",link:"https://www.galtmuseum.com/liff-2026"},
-  {id:36,title:"U of L Vibe Fest 2026",date:"2026-04-18",time:"All day",location:"University Centre for the Arts, U of L",categories:["Arts & Culture","Music","Community","Family"],price:"Free",description:"Premier showcase of student, faculty, staff, and alumni talent. Live music, soundscapes, art installations, performances, and tours of scarcely-seen campus spaces. 1,600+ attended in 2025.",link:"https://www.ulethbridge.ca/fine-arts/event-season"},
-  {id:37,title:"Greg Herman — Lethbridge Folk Club",date:"2026-04-18",time:"TBC",location:"Lethbridge Folk Club venue (TBC)",categories:["Music"],price:"$15–$25",description:"Folk music. Member/non-member pricing. Check Showpass or Owl for venue details.",link:""},
-  {id:38,title:"Handcrafted with Love — Spring Edition Market",date:"2026-04-18",time:"10:00 AM – 4:00 PM",location:"Lethbridge Trade & Convention Centre, 101 Exhibition Way South",categories:["Community","Arts & Culture"],price:"Free admission",description:"Artisan and gift market featuring local makers. Spring edition.",link:"https://www.excitelethbridge.ca"},
-  {id:39,title:"LIFF — Day 2",date:"2026-04-18",time:"Full day",location:"Multiple venues",categories:["Film","Arts & Culture"],price:"Ticketed",description:"Full day of screenings at the 4th Annual Lethbridge International Film Festival.",link:"https://www.galtmuseum.com/liff-2026"},
-  {id:40,title:"Jade Elephant",date:"2026-04-18",time:"8:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Music"],price:"Ticketed",description:"Live music at the Owl. Tickets on Showpass. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:41,title:"15th Annual Coaldale 5K Run",date:"2026-04-18",time:"Morning (TBC)",location:"Coaldale, AB (15 min east of Lethbridge)",categories:["Sport & Fitness"],price:"Registration fee",description:"Annual 5K community road race. Popular with Lethbridge runners. Timed by Sprint Line Events.",link:"https://prairierunners.ca"},
-  {id:42,title:"LIFF — Day 3",date:"2026-04-19",time:"Full day",location:"Multiple venues",categories:["Film","Arts & Culture"],price:"Ticketed",description:"Day 3 of screenings at the Lethbridge International Film Festival.",link:"https://www.galtmuseum.com/liff-2026"},
-  {id:43,title:"LIFF — Closing Day",date:"2026-04-20",time:"Until 2:00 PM",location:"Multiple venues",categories:["Film","Arts & Culture"],price:"Ticketed",description:"Closing films and party at the 4th Annual Lethbridge International Film Festival.",link:"https://www.galtmuseum.com/liff-2026"},
-  {id:44,title:"Speech & Arts Festival",date:"2026-04-21",time:"4:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Arts & Culture","Community"],price:"TBC",description:"Listed on Owl calendar. Details limited — contact Owl at (403) 942-1770.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:45,title:"Kim Churchill with Mia Kelly",date:"2026-04-22",time:"8:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Music"],price:"Ticketed",description:"Live music. Tickets going fast on Showpass. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:46,title:"The Sheepdogs with Special Guests",date:"2026-04-23",time:"7:30 PM",location:"Cavendish Farms Centre, 2510 Scenic Drive South",categories:["Music"],price:"Ticketed",description:"Rock band The Sheepdogs at the arena. Check Showpass or arena box office for tickets. All ages.",link:""},
-  {id:47,title:'Curator Tour — "A Smile in Every Bottle"',date:"2026-04-24",time:"12:00 PM – 1:00 PM",location:"Galt Museum & Archives, 502 1st St South",categories:["Heritage","Arts & Culture","Food & Drink"],price:"Admission applies",description:"Guided tour of the Sick's Breweries exhibition celebrating 100 years of Old Style Pilsner (first brewed in Lethbridge in 1926). With curator Stephanie Laine Hamilton.",link:"https://www.galtmuseum.com/events"},
-  {id:48,title:"Eric Braun",date:"2026-04-24",time:"8:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Music"],price:"TBC",description:"Live music at the Owl. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:49,title:"Earth Day Community Event",date:"2026-04-25",time:"10:00 AM – 2:00 PM",location:"Legacy Regional Park, 400 Blackwolf Blvd",categories:["Community"],price:"Free",description:"Earth Day celebration in Lethbridge's Legacy Regional Park.",link:"https://calendar.lethbridge.ca"},
-  {id:50,title:"SAEA 10-Year Milestone Celebration",date:"2026-04-25",time:"11:00 AM – 3:00 PM",location:"SAEA Multicultural Centre, 421 – 6 Ave South",categories:["Community"],price:"Free",description:"Celebrates 10 years of the Southern Alberta Ethnic Association. Cultural celebration and community gathering.",link:""},
-  {id:51,title:"SAAG — Crafternoon",date:"2026-04-25",time:"1:00 PM – 4:00 PM",location:"SAAG, 601 3 Ave South",categories:["Arts & Culture","Family","Community"],price:"Free",description:"Monthly self-directed art activity in the Creativity Centre. All supplies provided. Under 12 especially welcome.",link:"https://www.saag.ca/calendar"},
-  {id:52,title:"City & Baby Trade Show",date:"2026-04-25",time:"9:00 AM – 3:00 PM",location:"Lethbridge Trade & Convention Centre, 101 Exhibition Way South",categories:["Community","Family"],price:"TBC",description:"Trade show for parents and caregivers with infants and toddlers.",link:"https://www.excitelethbridge.ca"},
-  {id:53,title:"Troyanda Ukrainian Dance",date:"2026-04-25",time:"7:00 PM",location:"Yates Memorial Theatre, 1002 4th Ave South",categories:["Dance","Arts & Culture"],price:"Ticketed",description:"Ukrainian cultural dance performance.",link:""},
-  {id:54,title:"The Marty Party",date:"2026-04-25",time:"8:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Music","Community"],price:"TBC",description:"Live music at the Owl. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:55,title:'Dr. Guevremont — "Alberta Dry: A History of Prohibition"',date:"2026-04-26",time:"1:30 PM – 3:00 PM",location:"Galt Museum & Archives, 502 1st St South",categories:["Heritage","Education"],price:"Admission applies",description:"Public lecture on Alberta's Prohibition era — temperance, WWI's influence, contraband networks, and gangster raids. By Dr. Stéphane Guevremont, CBC Radio contributor.",link:"https://www.galtmuseum.com/events"},
-  {id:56,title:"Ron James — The Noise Between Our Ears",date:"2026-04-26",time:"7:30 PM",location:"Yates Memorial / Sterndale Bennett Theatre, 1002 4th Ave South",categories:["Comedy"],price:"Ticketed",description:"National Canadian stand-up comedian Ron James brings his current tour to Lethbridge.",link:"https://yatestheatre.ca"},
-  {id:57,title:"AiR Tyler Alexander Open House — Casa",date:"2026-04-28",time:"5:00 PM – 7:00 PM",location:"Casa — Atrium, 230 8th St South",categories:["Arts & Culture","Community"],price:"Free",description:"End-of-residency open house for April Artist-in-Residence Tyler Alexander. See what he's created in the Casa Textile Studio. Potluck welcome (include ingredient list).",link:"https://casalethbridge.ca/events"},
-  {id:58,title:"Kevin Giron Open Jam",date:"2026-04-28",time:"8:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Music","Community"],price:"Free/Low cover",description:"Open jam — musicians of all levels welcome. Recurring twice monthly. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:59,title:"Toddler Time — April",date:"2026-04-29",time:"9:00 AM – 10:00 AM",location:"Galt Museum & Archives, 502 1st St South",categories:["Family","Heritage"],price:"Admission applies",description:"Monthly drop-in for toddlers. Toys, activities, book reading, and private museum time. Free for Galt members.",link:"https://www.galtmuseum.com/events"},
-  {id:60,title:"Poetry Open Mic",date:"2026-04-29",time:"6:00 PM",location:"Owl Acoustic Lounge, 606 3rd Ave South",categories:["Arts & Culture","Community"],price:"Free/Low cover",description:"Monthly open mic focused on poetry and spoken word. Perform or just listen. 19+ venue.",link:"https://www.owlacousticlounge.ca/events"},
-  {id:61,title:"Recipes of the Archives: Sicks' Enterpriser Edition",date:"2026-04-30",time:"5:00 PM – 7:00 PM",location:"Galt Museum & Archives, 502 1st St South",categories:["Food & Drink","Heritage","Community"],price:"Ticketed",description:"Beer-inspired recipes from historic Fritz Sick's Enterpriser magazines, prepared by Galt programmers with expert context. Registration required.",link:"https://www.galtmuseum.com/events"}
+  {id:8,title:"SAAG — Free First Friday + Youth Art Club",date:"2026-04-03",time:"11:00 AM – 7:00 PM",location:"SAAG, 601 3 Ave South",categories:["Arts & Culture","Community","Family"],price:"Free",description:"Free admission all day. Youth Art Club (ages 12+) runs 1:00–3:00 PM.",link:"https://www.saag.ca/calendar"},
+  {id:9,title:"Easter Egg Hunt — Kinsman Park",date:"2026-04-04",time:"1:00 PM",location:"Kinsman Park",categories:["Community","Family"],price:"Free",description:"3rd Annual community egg hunt with treat bags.",link:"https://calendar.lethbridge.ca"},
+  {id:10,title:"Easter Egg Hunt at Fort Whoop-Up",date:"2026-04-04",time:"10:30 AM – 3:00 PM",location:"Fort Whoop-Up, 200 Indian Battle Road South",categories:["Heritage","Family"],price:"Admission applies",description:"Family Easter Egg Hunt inside historic Fort Whoop-Up.",link:"https://www.galtmuseum.com/events"},
+  {id:11,title:"6th Annual Green Shirt Day Family Skate",date:"2026-04-07",time:"Doors 4:30 PM",location:"Logan Boulet Arena",categories:["Community","Family","Sport & Fitness"],price:"Free",description:"Annual free family skate honouring Green Shirt Day and Logan Boulet's legacy of organ and tissue donation.",link:"https://calendar.lethbridge.ca"},
+  {id:12,title:"U of L Vibe Fest 2026",date:"2026-04-18",time:"All day",location:"University Centre for the Arts, U of L",categories:["Arts & Culture","Music","Community","Family"],price:"Free",description:"Premier showcase of student, faculty, staff, and alumni talent.",link:"https://www.ulethbridge.ca/fine-arts/event-season"},
+  {id:13,title:"Lethbridge International Film Festival (LIFF) — Opening",date:"2026-04-17",endDate:"2026-04-20",time:"Opens 1:00 PM",location:"Galt Museum / The Movie Mill / Sterndale Bennett Theatre",categories:["Film","Arts & Culture"],price:"Ticketed (varies)",description:"4th Annual LIFF. 70+ films from 18 countries, 13 local productions.",link:"https://www.galtmuseum.com/liff-2026"},
+  {id:14,title:"The Sheepdogs with Special Guests",date:"2026-04-23",time:"7:30 PM",location:"Cavendish Farms Centre, 2510 Scenic Drive South",categories:["Music"],price:"Ticketed",description:"Rock band The Sheepdogs at the arena.",link:""},
+  {id:15,title:"Ron James — The Noise Between Our Ears",date:"2026-04-26",time:"7:30 PM",location:"Yates Memorial / Sterndale Bennett Theatre, 1002 4th Ave South",categories:["Comedy"],price:"Ticketed",description:"National Canadian stand-up comedian Ron James brings his current tour to Lethbridge.",link:"https://yatestheatre.ca"}
 ];
 
-// Live events — populated by fetch
 let events = [];
 
 // ═════════════════════════════════════════
-// ICONS (inline SVG for zero dependencies)
+// ICONS
 // ═════════════════════════════════════════
 const icons = {
   clock: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
@@ -1627,11 +1496,17 @@ function formatDateLong(dateStr) {
   return d.toLocaleDateString('en-CA', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
 }
 
+function formatBlogDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr + 'T12:00:00');
+  return d.toLocaleDateString('en-CA', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+
 function getPriceLabel(price) {
   if (!price || price === 'TBC') return { text: 'TBC', cls: 'paid' };
   if (price.toLowerCase() === 'free' || price.toLowerCase().includes('free')) return { text: 'Free', cls: 'free' };
   if (price.toLowerCase().includes('sold out')) return { text: 'Sold Out', cls: 'sold-out' };
-  return { text: price, cls: 'paid' };
+  return { text: esc(price), cls: 'paid' };
 }
 
 // ═════════════════════════════════════════
@@ -1641,13 +1516,10 @@ let activeView = 'calendar';
 let activeFilters = new Set();
 const allCategories = [];
 
-// Current month shown in calendar
 const today = new Date();
 let currentYear  = today.getFullYear();
-let currentMonth = today.getMonth(); // 0-indexed
-
-// Current day/week cursor
-let currentDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+let currentMonth = today.getMonth();
+let currentDay   = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
 // ═════════════════════════════════════════
 // DATE HELPERS
@@ -1657,22 +1529,8 @@ function toDateStr(y, m, d) {
 }
 
 function dateStrToDate(s) {
-  // Parse YYYY-MM-DD without timezone shift
   const [y, m, d] = s.split('-').map(Number);
   return new Date(y, m - 1, d);
-}
-
-function isSameDay(a, b) {
-  return a.getFullYear() === b.getFullYear() &&
-         a.getMonth()    === b.getMonth()    &&
-         a.getDate()     === b.getDate();
-}
-
-function startOfWeek(d) {
-  const day = d.getDay(); // 0=Sun
-  const s = new Date(d);
-  s.setDate(d.getDate() - day);
-  return s;
 }
 
 function addDays(d, n) {
@@ -1701,7 +1559,7 @@ function renderFilters() {
   const bar = document.getElementById('filterBar');
   const allChip = `<button class="filter-chip ${activeFilters.size === 0 ? 'active' : ''}" data-filter="all">All Events</button>`;
   const chips = allCategories.map(cat =>
-    `<button class="filter-chip ${activeFilters.has(cat) ? 'active' : ''}" data-filter="${cat}">${cat}</button>`
+    `<button class="filter-chip ${activeFilters.has(cat) ? 'active' : ''}" data-filter="${esc(cat)}">${esc(cat)}</button>`
   ).join('');
   bar.innerHTML = allChip + chips;
 
@@ -1727,33 +1585,29 @@ function renderFilters() {
 // ═════════════════════════════════════════
 function renderThisWeek() {
   const section = document.getElementById('thisWeekSection');
-  const strip = document.getElementById('thisWeekStrip');
+  const strip   = document.getElementById('thisWeekStrip');
   const filtered = getFilteredEvents();
 
   const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const endDate = addDays(todayDate, 6);
-  const todayStr = toDateStr(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
-  const endStr = toDateStr(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+  const endDate   = addDays(todayDate, 6);
+  const todayStr  = toDateStr(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+  const endStr    = toDateStr(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
 
   const weekEvents = filtered.filter(e => {
     const start = e.date;
-    const end = e.endDate || e.date;
-    // Event overlaps with the 7-day window
+    const end   = e.endDate || e.date;
     return start <= endStr && end >= todayStr;
   }).sort((a, b) => a.date.localeCompare(b.date) || (a.time || '').localeCompare(b.time || ''));
 
-  if (weekEvents.length === 0) {
-    section.style.display = 'none';
-    return;
-  }
+  if (weekEvents.length === 0) { section.style.display = 'none'; return; }
 
   section.style.display = 'block';
   strip.innerHTML = weekEvents.map(e => {
     const catClass = getCatClass(e.categories);
     return `<div class="this-week-card ${catClass}" data-id="${e.id}">
-      <div class="this-week-title">${e.title}</div>
-      <div class="this-week-datetime">${formatDate(e.date)} · ${e.time || 'TBC'}</div>
-      <div class="this-week-location">${e.location || ''}</div>
+      <div class="this-week-title">${esc(e.title)}</div>
+      <div class="this-week-datetime">${esc(formatDate(e.date))} · ${esc(e.time || 'TBC')}</div>
+      <div class="this-week-location">${esc(e.location || '')}</div>
     </div>`;
   }).join('');
 
@@ -1772,10 +1626,8 @@ function updateMonthTitle() {
 }
 
 // ═════════════════════════════════════════
-// MONTH VIEW
+// CALENDAR
 // ═════════════════════════════════════════
-
-// Map category name → border class
 function getCatBorderClass(categories) {
   const primary = categories[0] || '';
   const map = {
@@ -1788,79 +1640,64 @@ function getCatBorderClass(categories) {
 }
 
 function renderCalendar() {
-  const grid = document.getElementById('calendarGrid');
-  const year = currentYear;
+  const grid  = document.getElementById('calendarGrid');
+  const year  = currentYear;
   const month = currentMonth;
 
-  const firstDay = new Date(year, month, 1).getDay(); // 0=Sun
+  const firstDay    = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const todayStr = toDateStr(today.getFullYear(), today.getMonth(), today.getDate());
+  const todayStr    = toDateStr(today.getFullYear(), today.getMonth(), today.getDate());
 
   const dayHeaders = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   let html = dayHeaders.map(d => `<div class="cal-day-header">${d}</div>`).join('');
 
-  // Build all day cells in order so we can apply alternating row tints
   const dayCells = [];
 
-  // Leading empties
   for (let i = 0; i < firstDay; i++) dayCells.push(`<div class="cal-day empty"></div>`);
 
   for (let day = 1; day <= daysInMonth; day++) {
-    const dateStr = toDateStr(year, month, day);
-    const isToday = dateStr === todayStr;
+    const dateStr  = toDateStr(year, month, day);
+    const isToday  = dateStr === todayStr;
     const dayEvents = getEventsForDate(dateStr);
     const hasEvents = dayEvents.length > 0;
-    const maxDots = 4;
-    const shown = dayEvents.slice(0, maxDots);
-    const extra = dayEvents.length - maxDots;
+    const maxDots   = 4;
+    const shown     = dayEvents.slice(0, maxDots);
+    const extra     = dayEvents.length - maxDots;
 
     let dotsHtml = '';
     if (hasEvents) {
       dotsHtml = '<div class="cal-dots">';
-      dotsHtml += shown.map(e =>
-        `<span class="cal-dot ${getCatClass(e.categories)}"></span>`
-      ).join('');
-      if (extra > 0) {
-        dotsHtml += `<span class="cal-dot-more" data-date="${dateStr}">+${extra}</span>`;
-      }
+      dotsHtml += shown.map(e => `<span class="cal-dot ${getCatClass(e.categories)}"></span>`).join('');
+      if (extra > 0) dotsHtml += `<span class="cal-dot-more">+${extra}</span>`;
       dotsHtml += '</div>';
     }
 
     const classes = ['cal-day'];
     if (isToday) classes.push('today');
-    if (hasEvents) {
-      classes.push('has-events');
-      classes.push(getCatBorderClass(dayEvents[0].categories));
-    }
+    if (hasEvents) { classes.push('has-events'); classes.push(getCatBorderClass(dayEvents[0].categories)); }
 
     dayCells.push(`<div class="${classes.join(' ')}" data-date="${dateStr}">
       <span class="cal-date">${day}</span>${dotsHtml}
     </div>`);
   }
 
-  // Trailing empties
   const totalCells = firstDay + daysInMonth;
-  const remaining = (7 - (totalCells % 7)) % 7;
+  const remaining  = (7 - (totalCells % 7)) % 7;
   for (let i = 0; i < remaining; i++) dayCells.push(`<div class="cal-day empty"></div>`);
 
-  // Apply alternating row tint (every second row of 7 cells)
   for (let i = 0; i < dayCells.length; i++) {
     const row = Math.floor(i / 7);
-    if (row % 2 === 1) {
-      dayCells[i] = dayCells[i].replace('class="cal-day', 'class="cal-day cal-row-alt');
-    }
+    if (row % 2 === 1) dayCells[i] = dayCells[i].replace('class="cal-day', 'class="cal-day cal-row-alt');
   }
 
   html += dayCells.join('');
   grid.innerHTML = html;
 
-  // Clicking any non-empty day cell → open day overlay
   grid.querySelectorAll('.cal-day:not(.empty)').forEach(el => {
     el.addEventListener('click', () => {
       const dateStr = el.dataset.date;
       if (!dateStr) return;
-      const d = dateStrToDate(dateStr);
-      currentDay = d;
+      currentDay = dateStrToDate(dateStr);
       openDayOverlay();
     });
   });
@@ -1881,20 +1718,14 @@ function closeDayOverlay() {
 }
 
 function renderDayOverlay() {
-  const dateStr = toDateStr(currentDay.getFullYear(), currentDay.getMonth(), currentDay.getDate());
+  const dateStr   = toDateStr(currentDay.getFullYear(), currentDay.getMonth(), currentDay.getDate());
   const dayEvents = getEventsForDate(dateStr);
   const container = document.getElementById('dayOverlayList');
 
-  // Format date — shorter on mobile
-  const dateLabel = formatDateLong(dateStr);
-  document.getElementById('dayOverlayDate').textContent = dateLabel;
+  document.getElementById('dayOverlayDate').textContent = formatDateLong(dateStr);
 
   if (dayEvents.length === 0) {
-    container.innerHTML = `
-      <div class="day-overlay-empty">
-        <div class="day-overlay-empty-icon">📭</div>
-        No events on this day.
-      </div>`;
+    container.innerHTML = `<div class="day-overlay-empty"><div class="day-overlay-empty-icon">📭</div>No events on this day.</div>`;
     return;
   }
 
@@ -1903,24 +1734,20 @@ function renderDayOverlay() {
     const pl = getPriceLabel(e.price);
     return `
     <div class="day-overlay-event ${catClass}" data-id="${e.id}">
-      <div class="day-overlay-event-time">${e.time || 'TBC'}</div>
+      <div class="day-overlay-event-time">${esc(e.time || 'TBC')}</div>
       <div class="day-overlay-event-info">
-        <div class="day-overlay-event-title">${e.title}</div>
-        <div class="day-overlay-event-loc">${e.location || ''}</div>
+        <div class="day-overlay-event-title">${esc(e.title)}</div>
+        <div class="day-overlay-event-loc">${esc(e.location || '')}</div>
       </div>
       <div class="day-overlay-event-price"><span class="card-price ${pl.cls}">${pl.text}</span></div>
     </div>`;
   }).join('');
 
   container.querySelectorAll('.day-overlay-event').forEach(el => {
-    el.addEventListener('click', () => {
-      closeDayOverlay();
-      openModal(parseInt(el.dataset.id));
-    });
+    el.addEventListener('click', () => { closeDayOverlay(); openModal(parseInt(el.dataset.id)); });
   });
 }
 
-// Day overlay nav — prev/next day
 document.getElementById('dayOverlayPrev').addEventListener('click', (e) => {
   e.stopPropagation();
   currentDay = addDays(currentDay, -1);
@@ -1937,18 +1764,14 @@ document.getElementById('dayOverlayNext').addEventListener('click', (e) => {
   updateMonthTitle();
 });
 
-// Day overlay close
 document.getElementById('dayOverlayClose').addEventListener('click', closeDayOverlay);
 document.getElementById('dayOverlay').addEventListener('click', (e) => {
   if (e.target === e.currentTarget) closeDayOverlay();
 });
 
-// Support swipe left/right on day overlay for mobile nav
 (function() {
-  const overlay = document.getElementById('dayOverlay');
-  let touchStartX = 0;
-  let touchStartY = 0;
-  const content = overlay.querySelector('.day-overlay-content');
+  const content = document.querySelector('.day-overlay-content');
+  let touchStartX = 0, touchStartY = 0;
 
   content.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
@@ -1958,15 +1781,8 @@ document.getElementById('dayOverlay').addEventListener('click', (e) => {
   content.addEventListener('touchend', (e) => {
     const dx = e.changedTouches[0].clientX - touchStartX;
     const dy = e.changedTouches[0].clientY - touchStartY;
-    // Only trigger if horizontal swipe > 60px and mostly horizontal
     if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-      if (dx < 0) {
-        // Swipe left → next day
-        currentDay = addDays(currentDay, 1);
-      } else {
-        // Swipe right → prev day
-        currentDay = addDays(currentDay, -1);
-      }
+      currentDay = addDays(currentDay, dx < 0 ? 1 : -1);
       syncMonthFromDay();
       renderDayOverlay();
       updateMonthTitle();
@@ -1979,10 +1795,10 @@ document.getElementById('dayOverlay').addEventListener('click', (e) => {
 // ═════════════════════════════════════════
 function renderMobileList() {
   const container = document.getElementById('mobileList');
-  const filtered = getFilteredEvents();
-  // Show only current month on mobile
-  const monthStr = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}`;
+  const filtered  = getFilteredEvents();
+  const monthStr  = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}`;
   const monthEvents = filtered.filter(e => e.date && e.date.startsWith(monthStr));
+
   const byDate = {};
   monthEvents.forEach(e => {
     if (!byDate[e.date]) byDate[e.date] = [];
@@ -1997,11 +1813,11 @@ function renderMobileList() {
 
   container.innerHTML = dates.map(date => `
     <div class="mobile-day-group">
-      <div class="mobile-day-label">${formatDate(date)}</div>
+      <div class="mobile-day-label">${esc(formatDate(date))}</div>
       ${byDate[date].map(e => `
         <div class="mobile-event-item" data-id="${e.id}">
-          <div class="mobile-event-time">${e.time || 'TBC'}</div>
-          <div class="mobile-event-title">${e.title}</div>
+          <div class="mobile-event-time">${esc(e.time || 'TBC')}</div>
+          <div class="mobile-event-title">${esc(e.title)}</div>
         </div>
       `).join('')}
     </div>
@@ -2016,7 +1832,7 @@ function renderMobileList() {
 // GALLERY VIEW
 // ═════════════════════════════════════════
 function renderGallery() {
-  const grid = document.getElementById('galleryGrid');
+  const grid     = document.getElementById('galleryGrid');
   const filtered = getFilteredEvents();
 
   if (filtered.length === 0) {
@@ -2032,17 +1848,17 @@ function renderGallery() {
       <div class="card-color-bar ${catClass}"></div>
       <div class="card-body">
         <div class="card-date-row">
-          <span class="card-date">${formatDate(e.date)}${e.endDate ? ' – ' + formatDate(e.endDate) : ''}</span>
+          <span class="card-date">${esc(formatDate(e.date))}${e.endDate ? ' – ' + esc(formatDate(e.endDate)) : ''}</span>
           <span class="card-price ${pl.cls}">${pl.text}</span>
         </div>
-        <div class="card-title">${e.title}</div>
+        <div class="card-title">${esc(e.title)}</div>
         <div class="card-meta">
-          <div class="card-meta-item">${icons.clock}<span>${e.time || 'TBC'}</span></div>
-          <div class="card-meta-item">${icons.pin}<span>${e.location}</span></div>
+          <div class="card-meta-item">${icons.clock}<span>${esc(e.time || 'TBC')}</span></div>
+          <div class="card-meta-item">${icons.pin}<span>${esc(e.location)}</span></div>
         </div>
-        <div class="card-desc">${e.description}</div>
+        <div class="card-desc">${esc(e.description)}</div>
         <div class="card-tags">
-          ${e.categories.map(c => `<span class="card-tag ${getCatClass([c])}">${c}</span>`).join('')}
+          ${e.categories.map(c => `<span class="card-tag ${getCatClass([c])}">${esc(c)}</span>`).join('')}
         </div>
       </div>
     </div>`;
@@ -2054,22 +1870,18 @@ function renderGallery() {
 }
 
 // ═════════════════════════════════════════
-// CALENDAR RENDERING (month view only)
+// SYNC MONTH FROM DAY
 // ═════════════════════════════════════════
-
-// Keep month/year in sync with currentDay
 function syncMonthFromDay() {
   if (currentDay.getMonth() !== currentMonth || currentDay.getFullYear() !== currentYear) {
     currentMonth = currentDay.getMonth();
-    currentYear = currentDay.getFullYear();
+    currentYear  = currentDay.getFullYear();
     renderCalendar();
     renderMobileList();
   }
 }
 
-function renderCurrentCalView() {
-  renderCalendar();
-}
+function renderCurrentCalView() { renderCalendar(); }
 
 // ═════════════════════════════════════════
 // MONTH NAVIGATION
@@ -2078,18 +1890,14 @@ document.getElementById('prevMonth').addEventListener('click', () => {
   currentMonth--;
   if (currentMonth < 0) { currentMonth = 11; currentYear--; }
   currentDay = new Date(currentYear, currentMonth, 1);
-  renderCalendar();
-  renderMobileList();
-  updateMonthTitle();
+  renderCalendar(); renderMobileList(); updateMonthTitle();
 });
 
 document.getElementById('nextMonth').addEventListener('click', () => {
   currentMonth++;
   if (currentMonth > 11) { currentMonth = 0; currentYear++; }
   currentDay = new Date(currentYear, currentMonth, 1);
-  renderCalendar();
-  renderMobileList();
-  updateMonthTitle();
+  renderCalendar(); renderMobileList(); updateMonthTitle();
 });
 
 // ═════════════════════════════════════════
@@ -2101,21 +1909,22 @@ function openModal(id) {
 
   const pl = getPriceLabel(e.price);
   const catClass = getCatClass(e.categories);
+  const safeLink = safeUrl(e.link);
 
   document.getElementById('modalBar').className = `modal-bar ${catClass}`;
   document.getElementById('modalInner').innerHTML = `
-    <div class="modal-date">${formatDateLong(e.date)}${e.endDate ? ' – ' + formatDateLong(e.endDate) : ''}</div>
-    <div class="modal-title">${e.title}</div>
+    <div class="modal-date">${esc(formatDateLong(e.date))}${e.endDate ? ' – ' + esc(formatDateLong(e.endDate)) : ''}</div>
+    <div class="modal-title">${esc(e.title)}</div>
     <div class="modal-details">
-      <div class="modal-detail">${icons.clock}<div><strong>Time:</strong> ${e.time || 'TBC'}</div></div>
-      <div class="modal-detail">${icons.pin}<div><strong>Location:</strong> ${e.location}</div></div>
-      <div class="modal-detail">${icons.ticket}<div><strong>Price:</strong> ${e.price || 'TBC'}</div></div>
+      <div class="modal-detail">${icons.clock}<div><strong>Time:</strong> ${esc(e.time || 'TBC')}</div></div>
+      <div class="modal-detail">${icons.pin}<div><strong>Location:</strong> ${esc(e.location)}</div></div>
+      <div class="modal-detail">${icons.ticket}<div><strong>Price:</strong> ${esc(e.price || 'TBC')}</div></div>
     </div>
-    <div class="modal-desc">${e.description}</div>
+    <div class="modal-desc">${esc(e.description)}</div>
     <div class="modal-tags">
-      ${e.categories.map(c => `<span class="card-tag ${getCatClass([c])}">${c}</span>`).join('')}
+      ${e.categories.map(c => `<span class="card-tag ${getCatClass([c])}">${esc(c)}</span>`).join('')}
     </div>
-    ${e.link ? `<a href="${e.link}" target="_blank" class="modal-link">${icons.link} More Info</a>` : ''}
+    ${safeLink ? `<a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="modal-link">${icons.link} More Info</a>` : ''}
   `;
 
   document.getElementById('eventModal').classList.add('open');
@@ -2136,6 +1945,130 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ═════════════════════════════════════════
+// BLOG
+// ═════════════════════════════════════════
+let blogPosts = [];
+
+async function loadBlogIndex() {
+  const grid = document.getElementById('blogGrid');
+
+  if (!BLOG_CSV_URL) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+      <h3>Coming soon</h3>
+      <p>The blog is being set up. Check back shortly.</p>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = `<div class="loading-state" style="grid-column:1/-1"><div class="spinner"></div><p>Loading posts…</p></div>`;
+
+  try {
+    const res  = await fetchWithRetry(BLOG_CSV_URL);
+    const text = await res.text();
+    const rows = parseCSV(text);
+    blogPosts  = rows
+      .filter(r => (r.status || '').toLowerCase().trim() === 'published')
+      .map((r, i) => ({
+        id: i,
+        title:   r.title   || '(Untitled)',
+        date:    r.date    || '',
+        summary: r.summary || '',
+        doc_url: r.doc_url || '',
+      }))
+      .sort((a, b) => b.date.localeCompare(a.date));
+
+    renderBlogList();
+  } catch (err) {
+    console.error('Blog load error:', err);
+    grid.innerHTML = `<div class="error-state" style="grid-column:1/-1">
+      <h3>Couldn't load posts</h3>
+      <p>Try refreshing the page.</p>
+    </div>`;
+  }
+}
+
+function renderBlogList() {
+  const grid = document.getElementById('blogGrid');
+
+  if (blogPosts.length === 0) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><h3>No posts yet</h3><p>Check back soon.</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = blogPosts.map(p => `
+    <div class="blog-card" data-blog-id="${p.id}">
+      <div class="blog-card-accent"></div>
+      <div class="blog-card-body">
+        <div class="blog-card-date">${esc(formatBlogDate(p.date))}</div>
+        <div class="blog-card-title">${esc(p.title)}</div>
+        <div class="blog-card-summary">${esc(p.summary)}</div>
+        <div class="blog-card-read">Read more →</div>
+      </div>
+    </div>
+  `).join('');
+
+  grid.querySelectorAll('.blog-card').forEach(el => {
+    el.addEventListener('click', () => openBlogPost(parseInt(el.dataset.blogId)));
+  });
+}
+
+async function openBlogPost(id) {
+  const post = blogPosts[id];
+  if (!post) return;
+
+  document.getElementById('blogListView').style.display = 'none';
+  const postView = document.getElementById('blogPostView');
+  postView.classList.add('active');
+
+  document.getElementById('blogPostDate').textContent  = formatBlogDate(post.date);
+  document.getElementById('blogPostTitle').textContent = post.title;
+
+  const body = document.getElementById('blogPostBody');
+  body.innerHTML = `<div class="blog-post-loading"><div class="spinner"></div><p>Loading post…</p></div>`;
+
+  const safeDocUrl = safeUrl(post.doc_url);
+
+  if (!safeDocUrl) {
+    body.innerHTML = `<div class="blog-post-error">Post content URL is missing. Please check the blog index sheet.</div>`;
+    return;
+  }
+
+  // Google Docs published URL — append &embedded=true for cleaner output
+  const fetchUrl = safeDocUrl.includes('?') ? safeDocUrl + '&embedded=true' : safeDocUrl + '?embedded=true';
+
+  try {
+    const res  = await fetchWithRetry(fetchUrl);
+    const html = await res.text();
+
+    // Parse the returned Google Docs HTML and extract just the body content
+    const parser = new DOMParser();
+    const doc    = parser.parseFromString(html, 'text/html');
+
+    // Google Docs published pages wrap content in <div id="contents"> or <body>
+    const contents = doc.querySelector('#contents') || doc.body;
+
+    // Strip Google's inline styles and class attributes to let our CSS take over
+    contents.querySelectorAll('[style]').forEach(el => el.removeAttribute('style'));
+    contents.querySelectorAll('[class]').forEach(el => el.removeAttribute('class'));
+
+    // Remove Google header/footer navigation elements
+    contents.querySelectorAll('header, footer, nav, script, style').forEach(el => el.remove());
+
+    body.innerHTML = `<div class="blog-post-content">${contents.innerHTML}</div>`;
+  } catch (err) {
+    console.error('Blog post load error:', err);
+    body.innerHTML = `<div class="blog-post-error">
+      Couldn't load this post right now. <a href="${safeDocUrl}" target="_blank" rel="noopener noreferrer">Open it directly →</a>
+    </div>`;
+  }
+}
+
+document.getElementById('blogBackBtn').addEventListener('click', () => {
+  document.getElementById('blogPostView').classList.remove('active');
+  document.getElementById('blogListView').style.display = '';
+});
+
+// ═════════════════════════════════════════
 // MAIN NAV
 // ═════════════════════════════════════════
 function switchView(view) {
@@ -2145,12 +2078,15 @@ function switchView(view) {
     t.classList.toggle('active', t.dataset.view === view);
   });
 
+  const eventsViews = document.getElementById('events-views');
+  eventsViews.style.display = (view === 'calendar' || view === 'gallery') ? 'block' : 'none';
+
   document.getElementById('view-calendar').classList.toggle('active', view === 'calendar');
   document.getElementById('view-gallery').classList.toggle('active', view === 'gallery');
+  document.getElementById('view-blog').classList.toggle('active', view === 'blog');
   document.getElementById('view-submit').classList.toggle('active', view === 'submit');
 
-  const eventsViews = document.getElementById('events-views');
-  eventsViews.style.display = (view === 'submit') ? 'none' : 'block';
+  if (view === 'blog' && blogPosts.length === 0) loadBlogIndex();
 }
 
 document.querySelectorAll('.nav-tab').forEach(tab => {
@@ -2158,9 +2094,12 @@ document.querySelectorAll('.nav-tab').forEach(tab => {
 });
 
 // ═════════════════════════════════════════
-// FORM
+// SUBMIT FORM
 // ═════════════════════════════════════════
 document.getElementById('submitBtn').addEventListener('click', () => {
+  // Honeypot check — if filled, silently reject (bot)
+  if (document.getElementById('f-website').value) return;
+
   const name  = document.getElementById('f-name').value.trim();
   const date  = document.getElementById('f-date').value.trim();
   const venue = document.getElementById('f-venue').value.trim();
@@ -2171,13 +2110,19 @@ document.getElementById('submitBtn').addEventListener('click', () => {
     return;
   }
 
+  // TODO: replace this block with a fetch() POST to your Google Apps Script URL
+  // fetch('YOUR_APPS_SCRIPT_URL', {
+  //   method: 'POST',
+  //   body: JSON.stringify({ title: name, date, ... })
+  // });
+
   document.getElementById('submitFormGrid').style.display = 'none';
   document.querySelector('.form-submit').style.display = 'none';
   document.getElementById('formSuccess').style.display = 'block';
 });
 
 // ═════════════════════════════════════════
-// INIT — fetch from Google Sheets CSV
+// FETCH WITH RETRY
 // ═════════════════════════════════════════
 async function fetchWithRetry(url, attempts = 3, delayMs = 2000) {
   for (let i = 0; i < attempts; i++) {
@@ -2186,19 +2131,19 @@ async function fetchWithRetry(url, attempts = 3, delayMs = 2000) {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res;
     } catch (err) {
-      if (i < attempts - 1) {
-        await new Promise(r => setTimeout(r, delayMs));
-      } else {
-        throw err;
-      }
+      if (i < attempts - 1) await new Promise(r => setTimeout(r, delayMs));
+      else throw err;
     }
   }
 }
 
+// ═════════════════════════════════════════
+// INIT
+// ═════════════════════════════════════════
 async function init() {
   showLoadingState();
   try {
-    const res = await fetchWithRetry(CSV_URL);
+    const res  = await fetchWithRetry(CSV_URL);
     const text = await res.text();
     const rows = parseCSV(text);
     const published = rows.filter(r => (r.status || '').toLowerCase().trim() === 'published');
@@ -2210,7 +2155,6 @@ async function init() {
     return;
   }
 
-  // Rebuild category list from live data
   allCategories.length = 0;
   [...new Set(events.flatMap(e => e.categories))].sort().forEach(c => allCategories.push(c));
 
@@ -2224,6 +2168,7 @@ async function init() {
 
 init();
 </script>
+
 
 </body>
 </html>
